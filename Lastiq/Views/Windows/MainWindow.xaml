@@ -24,7 +24,7 @@
             <!-- LeftPanel -->
             <Grid DockPanel.Dock="Left" Background="#D6D6D6"
                   Width="233">
-
+                <TextBox Style="{StaticResource SearchBox}" Margin="-21,0,0,0"></TextBox>
             </Grid>
 
             <!-- MainPanel -->

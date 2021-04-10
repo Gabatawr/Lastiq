@@ -20,6 +20,8 @@
                 <ResourceDictionary Source="Resources/Styles/Template.TextBox.Border.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/TextBox.xaml"/>
 
+                <ResourceDictionary Source="Resources/Styles/TextBox.Search.xaml"/>
+
                 <ResourceDictionary Source="Resources/Styles/Template.PasswordBox.Border.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/PasswordBox.xaml"/>
 
