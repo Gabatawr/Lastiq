@@ -22,10 +22,27 @@
                    cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
 
             <!-- LeftPanel -->
-            <Grid DockPanel.Dock="Left" Background="#D6D6D6"
+            <StackPanel DockPanel.Dock="Left" Background="#D6D6D6"
+                        Orientation="Vertical"
                   Width="233">
-                <TextBox Style="{StaticResource SearchBox}" Margin="-21,0,0,0"></TextBox>
-            </Grid>
+
+                <TextBox Style="{StaticResource SearchBox}"/>
+
+                <ListBox ItemsSource="{Binding TagItemsCollection}"
+                         ItemContainerStyle="{StaticResource TagItemStyle}"
+                         Style="{StaticResource TagItemsListBoxStyle}">
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+
+                            <StackPanel Orientation="Vertical"/>
+
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                </ListBox>
+
+            </StackPanel>
 
             <!-- MainPanel -->
             <DockPanel LastChildFill="true">
