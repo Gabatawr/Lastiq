@@ -22,15 +22,17 @@
                    cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
 
             <!-- LeftPanel -->
-            <StackPanel DockPanel.Dock="Left" Background="#D6D6D6"
-                        Orientation="Vertical"
+            <Grid DockPanel.Dock="Left" Background="#D6D6D6"
                   Width="233">
-
+                
+                <!-- Searcher -->
                 <TextBox Style="{StaticResource SearchBox}"/>
 
+                <!-- TagList -->
                 <ListBox ItemsSource="{Binding TagItemsCollection}"
                          ItemContainerStyle="{StaticResource TagItemStyle}"
-                         Style="{StaticResource TagItemsListBoxStyle}">
+                         Style="{StaticResource TagItemsListBoxStyle}"
+                         VerticalAlignment="Bottom" Margin="0,0,0,64">
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -42,7 +44,7 @@
 
                 </ListBox>
 
-            </StackPanel>
+            </Grid>
 
             <!-- MainPanel -->
             <DockPanel LastChildFill="true">
@@ -64,17 +66,16 @@
                         </Grid.Resources>
 
                         <!-- AddBtn -->
-                        <Grid Grid.Column="0">
+                        <Grid Grid.Column="0" Style="{StaticResource NavBtnGridStyle}">
                             
                             <StackPanel Orientation="Vertical"
-                                        VerticalAlignment="Center" HorizontalAlignment="Center">
-                                
+                                        HorizontalAlignment="Center" VerticalAlignment="Center">
+
                                 <Image Source="{StaticResource AddBtn}" Width="21" Opacity="0.55"
                                        RenderOptions.BitmapScalingMode="HighQuality"/>
-                                <Grid Height="5"/>
                                 <TextBlock Style="{StaticResource TextStyle}"
-                                           Opacity="0.21">Add</TextBlock>
-                                
+                                           Margin="0,5,0,0" Opacity="0.55"
+                                           Text="Add"/>
                             </StackPanel>
                             
                         </Grid>
@@ -85,16 +86,16 @@
                         </Grid>
 
                         <!-- CalendarBtn -->
-                        <Grid Grid.Column="2">
+                        <Grid Grid.Column="2" Style="{StaticResource NavBtnGridStyle}">
 
                             <StackPanel Orientation="Vertical"
                                         VerticalAlignment="Center" HorizontalAlignment="Center">
 
                                 <Image Source="{StaticResource CalendarBtn}" Width="21" Opacity="0.55"
                                        RenderOptions.BitmapScalingMode="HighQuality"/>
-                                <Grid Height="5"/>
                                 <TextBlock Style="{StaticResource TextStyle}"
-                                           Opacity="0.21">Calendar</TextBlock>
+                                           Margin="0,5,0,0" Opacity="0.55"
+                                           Text="Calendar"/>
 
                             </StackPanel>
 

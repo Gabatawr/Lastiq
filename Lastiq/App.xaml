@@ -15,7 +15,9 @@
 
                 <ResourceDictionary Source="Resources/Styles/TextBlock.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/TextBox.Search.xaml"/>
-
+                
+                <ResourceDictionary Source="Resources/Styles/Grid.NavBtn.xaml"/>
+                
                 <ResourceDictionary Source="Resources/Styles/Template.PasswordBox.Border.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/PasswordBox.xaml"/>
 

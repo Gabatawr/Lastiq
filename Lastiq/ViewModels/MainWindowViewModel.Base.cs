@@ -7,13 +7,15 @@ namespace Lastiq.ViewModels
     {
         public MainWindowViewModel()
         {
-            #region Test
+            #region TagListTest
 
             TagItemsCollection.Add(new TagModel() { Text = "TagOne", Count = 1 });
             TagItemsCollection.Add(new TagModel() { Text = "TagTwo", Count = 22 });
             TagItemsCollection.Add(new TagModel() { Text = "TagThree", Count = 333 });
 
-            #endregion Test
+            #endregion TagListTest
+
+
         }
     }
 }
