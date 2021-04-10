@@ -15,16 +15,15 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
-
     <Grid>
         
         <!-- App -->
         <DockPanel LastChildFill="true"
-               cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
+                   cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
 
             <!-- LeftPanel -->
             <Grid DockPanel.Dock="Left" Background="#D6D6D6"
-              Width="233">
+                  Width="233">
 
             </Grid>
 
@@ -33,7 +32,7 @@
 
                 <!-- NavPanelTop -->
                 <Grid DockPanel.Dock="Top" Background="#E8E8E8"
-                  Height="64">
+                      Height="64">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -42,9 +41,25 @@
                             <ColumnDefinition Width="64"/>
                         </Grid.ColumnDefinitions>
 
+                        <Grid.Resources>
+                            <BitmapImage x:Key="AddBtn" UriSource="pack://application:,,,/Resources/Media/add.png" />
+                            <BitmapImage x:Key="CalendarBtn" UriSource="pack://application:,,,/Resources/Media/calendar.png" />
+                        </Grid.Resources>
+
                         <!-- AddBtn -->
                         <Grid Grid.Column="0">
-
+                            
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                                
+                                <Image Source="{StaticResource AddBtn}" Width="21" Opacity="0.55"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <Grid Height="5"/>
+                                <TextBlock Style="{StaticResource TextStyle}"
+                                           Opacity="0.21">Add</TextBlock>
+                                
+                            </StackPanel>
+                            
                         </Grid>
 
                         <!-- WeekPanel -->
@@ -55,6 +70,17 @@
                         <!-- CalendarBtn -->
                         <Grid Grid.Column="2">
 
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                <Image Source="{StaticResource CalendarBtn}" Width="21" Opacity="0.55"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <Grid Height="5"/>
+                                <TextBlock Style="{StaticResource TextStyle}"
+                                           Opacity="0.21">Calendar</TextBlock>
+
+                            </StackPanel>
+
                         </Grid>
 
                     </Grid>
@@ -63,7 +89,7 @@
 
                 <!-- TimelinePanel -->
                 <Grid DockPanel.Dock="Left" Background="#E8E8E8"
-                  Width="64">
+                      Width="64">
 
                 </Grid>
 

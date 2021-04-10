@@ -114,6 +114,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Montserrat-Medium.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -180,7 +181,11 @@
     <Folder Include="Infrastructure\Converters\" />
     <Folder Include="Infrastructure\Services\Connection\" />
     <Folder Include="Model\" />
-    <Folder Include="Resources\Media\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\add.png" />
+    <Resource Include="Resources\Media\calendar.png" />
+    <Resource Include="Resources\Media\clock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
