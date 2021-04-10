@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace Chatyx.Infrastructure.Commands
+namespace Lastiq.Infrastructure.Commands
 {
     public class KeyboardCommands
     {

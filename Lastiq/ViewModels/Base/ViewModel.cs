@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-namespace Chatyx.ViewModels.Base
+namespace Lastiq.ViewModels.Base
 {
     public abstract class ViewModel : INotifyPropertyChanged
     {

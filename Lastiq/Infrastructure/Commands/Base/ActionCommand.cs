@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chatyx.Infrastructure.Commands.Base
+namespace Lastiq.Infrastructure.Commands.Base
 {
     class ActionCommand : AppCommand
     {

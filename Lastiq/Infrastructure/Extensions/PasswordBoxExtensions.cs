@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Chatyx.Infrastructure.Extensions
+namespace Lastiq.Infrastructure.Extensions
 {
     internal static class PasswordBoxExtensions
     {

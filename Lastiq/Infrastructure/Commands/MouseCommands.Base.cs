@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Chatyx.Infrastructure.Commands
+namespace Lastiq.Infrastructure.Commands
 {
     class MouseCommands
     {

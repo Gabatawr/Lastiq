@@ -1,9 +1,9 @@
-﻿using Chatyx.ViewModels;
-using Chatyx.ViewModels.Base;
+﻿using Lastiq.ViewModels;
+using Lastiq.ViewModels.Base;
 using System;
 using System.Windows.Input;
 
-namespace Chatyx.Infrastructure.Commands.Base
+namespace Lastiq.Infrastructure.Commands.Base
 {
     public abstract class AppCommand : ICommand
     {

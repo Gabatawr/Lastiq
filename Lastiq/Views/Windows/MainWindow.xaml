@@ -1,263 +1,98 @@
-﻿<Window x:Class="Chatyx.Views.Windows.MainWindow"
+﻿<Window x:Class="Lastiq.Views.Windows.MainWindow"
         
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
-        xmlns:cmd="clr-namespace:Chatyx.Infrastructure.Commands"
-        xmlns:vm="clr-namespace:Chatyx.ViewModels"
-        xmlns:ext="clr-namespace:Chatyx.Infrastructure.Extensions"
-        xmlns:convert="clr-namespace:Chatyx.Infrastructure.Converters"
+        xmlns:cmd="clr-namespace:Lastiq.Infrastructure.Commands"
+        xmlns:vm="clr-namespace:Lastiq.ViewModels"
         
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource WindowStyle}"
-        
-        cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
+        Style="{StaticResource MainWindowStyle}">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
+
     <Grid>
-        <DockPanel LastChildFill="True">
+        
+        <!-- App -->
+        <DockPanel LastChildFill="true"
+               cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
 
-            <Grid DockPanel.Dock="Top">
+            <!-- LeftPanel -->
+            <Grid DockPanel.Dock="Left" Background="#D6D6D6"
+              Width="233">
 
-                <Grid Height="14" Width="30" Margin="12" VerticalAlignment="Top" 
-                      HorizontalAlignment="Right">
+            </Grid>
 
-                    <Button ToolTip="Minimize" Style="{StaticResource BtnAppControl}"
-                        HorizontalAlignment="Left" Background="Yellow"
-                        Command="{Binding AppCommands[MinimizeAppCommand]}"/>
+            <!-- MainPanel -->
+            <DockPanel LastChildFill="true">
 
-                    <Button ToolTip="Close" Style="{StaticResource BtnAppControl}"
-                        HorizontalAlignment="Right"  Background="Red"
-                        Command="{Binding AppCommands[CloseAppCommand]}"/>
+                <!-- NavPanelTop -->
+                <Grid DockPanel.Dock="Top" Background="#E8E8E8"
+                  Height="64">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="64"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="64"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- AddBtn -->
+                        <Grid Grid.Column="0">
+
+                        </Grid>
+
+                        <!-- WeekPanel -->
+                        <Grid Grid.Column="1">
+
+                        </Grid>
+
+                        <!-- CalendarBtn -->
+                        <Grid Grid.Column="2">
+
+                        </Grid>
+
+                    </Grid>
+
                 </Grid>
 
-                <Border ToolTip="Connection status"
-                        VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                        BorderThickness="0" CornerRadius="0,0,200,200"
-                        Width="auto" Height="6" Margin="1,0,1,0"
-                        Background="{Binding ConnectColorParam}"/>
-            </Grid>
+                <!-- TimelinePanel -->
+                <Grid DockPanel.Dock="Left" Background="#E8E8E8"
+                  Width="64">
 
-            <!--........................................................................-->
+                </Grid>
 
-            <Grid>
-                <Grid.Resources>
-                    <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-                </Grid.Resources>
-                
-                <StackPanel Margin="6,0" Orientation="Vertical"
-                            MaxHeight="144" MaxWidth="378"
-                            Visibility="{Binding Path=ShowConnectPanelParam, Converter={StaticResource BoolToVisibilityConverter}}">
+                <!-- StickBox -->
+                <Grid>
 
-                    <TextBlock Style="{StaticResource HeaderText}">IP</TextBlock>
-                    <TextBox Style="{StaticResource EnterText}"
-                             Margin="0,2" Height="24" 
-                             Text="{Binding IPParam}"
-                             IsEnabled="{Binding IsClientModeParam}"/>
 
-                    <TextBlock Style="{StaticResource HeaderText}">Port</TextBlock>
-                    <TextBox Style="{StaticResource EnterText}"
-                             Margin="0,2" Height="24" 
-                             Text="{Binding PortParam}"/>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                </Grid>
 
-                        <Button x:Name="BtnClientMode" Style="{StaticResource ChangeModeStyle}"
-                                Foreground="{Binding ClientModeParam}"
-                                cmd:MouseCommands.Click="{Binding ChangeModeCommand}">
-                                Client
-                        </Button>
+            </DockPanel>
 
-                        <Button x:Name="BtnServerMode" Grid.Column="1" Style="{StaticResource ChangeModeStyle}"
-                                Foreground="{Binding ServerModeParam}"
-                                cmd:MouseCommands.Click="{Binding ChangeModeCommand}">
-                                Server
-                        </Button>
-                    </Grid>
-
-                    <Button Height="24" Margin="0,2"
-                            FontWeight="Medium"
-                            Background="#007DFF"
-                            Foreground="White"
-                            cmd:MouseCommands.Click="{Binding ConnectCommand}"
-                            Content="{Binding GoTextParam}"/>
-
-                </StackPanel>
-
-                <StackPanel Margin="6,0" Orientation="Vertical" 
-                            MaxHeight="144" MaxWidth="378"
-                            Visibility="{Binding Path=ShowLoginPanelParam, Converter={StaticResource BoolToVisibilityConverter}}">
-
-                    <TextBlock Style="{StaticResource HeaderText}">Login</TextBlock>
-                    <TextBox Style="{StaticResource EnterText}"
-                             Margin="0,2" Height="24" 
-                             Text="{Binding LoginParam}"/>
-
-                    <TextBlock Style="{StaticResource HeaderText}">Password</TextBlock>
-                    <PasswordBox Style="{StaticResource PasswordStyle}"
-                                 Margin="0,2" Height="24" 
-                                 ext:PasswordBoxExtensions.BindPassword="true"
-                                 ext:PasswordBoxExtensions.TextPassword="{Binding PasswordParam, Mode=TwoWay}"/>
-
-                    <Grid Margin="0,18,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="0" Height="24" Margin="0,0,3,0"
-                                FontWeight="Medium" Background="#007DFF" Foreground="White"
-                                cmd:MouseCommands.Click="{Binding LoginCommand}">
-                            Login
-                        </Button>
-
-                        <Button Grid.Column="1" Height="24" Margin="3,0,0,0"
-                                FontWeight="Medium" Background="#007DFF" Foreground="White"
-                                cmd:MouseCommands.Click="{Binding RegistrationCommand}">
-                            Registration
-                        </Button>
-                    </Grid>
-                    
-                </StackPanel>
-
-                <DockPanel LastChildFill="True"
-                           Visibility="{Binding Path=ShowChatBoxPanelParam, Converter={StaticResource BoolToVisibilityConverter}}">
-
-                    <DockPanel.Resources>
-                        <BitmapImage x:Key="SendImageBtn" UriSource="pack://application:,,,/Resources/Media/send_image.png" />
-                        <BitmapImage x:Key="SendTextBtn" UriSource="pack://application:,,,/Resources/Media/send_text.png" />
-                        <convert:ByteArrayToBitmapImageConverter x:Key="ByteToImageConverter"/>
-                    </DockPanel.Resources>
-
-                    <Grid>
-                        <DockPanel LastChildFill="True">
-                            <Grid DockPanel.Dock="Bottom" Background="Transparent"
-                                  Width="auto" Height="32" Margin="4">
-                                
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="0.05*"/>
-                                    <ColumnDefinition Width="0.08*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBox Grid.Column="0" Style="{StaticResource EnterText}"
-                                         Margin="3,0" Height="24"
-                                         Text="{Binding MessageTextParam, UpdateSourceTrigger=PropertyChanged}">
-                                    
-                                    <TextBox.InputBindings>
-                                        <KeyBinding Key="Enter" Command="{Binding SendMessageCommands[SendMessageTextCommand]}"/>
-                                    </TextBox.InputBindings>
-                                    
-                                </TextBox>
-                                
-                                <Button Grid.Column="1" Margin="3,0" Height="24"
-                                        Background="#D4E6FF"
-                                        cmd:MouseCommands.Click="{Binding SendMessageCommands[SendMessageImageCommand]}">
-                                    <Image Source="{StaticResource SendImageBtn}" Width="16"
-                                           RenderOptions.BitmapScalingMode="HighQuality"/>
-                                </Button>
-
-                                <Button Grid.Column="2" Margin="3,0" Height="24"
-                                        FontWeight="Medium" Background="#C1DBFF" Foreground="White"
-                                        cmd:MouseCommands.Click="{Binding SendMessageCommands[SendMessageTextCommand]}">
-                                    <Image Source="{StaticResource SendTextBtn}" Width="16"
-                                           RenderOptions.BitmapScalingMode="HighQuality"/>
-                                </Button>
-
-                            </Grid>
-                            
-                            <Grid Background="#45008DFF" Margin="9,0">
-
-                                <ItemsControl ItemsSource="{Binding MessageItems}">
-
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            
-                                            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom"/>
-
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-
-                                    <ItemsControl.Template>
-                                        <ControlTemplate>
-
-                                            <ScrollViewer x:Name="Scroller" VerticalScrollBarVisibility="Hidden"
-                                                          ext:ScrollViewerExtensions.AutoDrop="True">
-                                                <ItemsPresenter/>
-                                            </ScrollViewer>
-                                            
-                                        </ControlTemplate>
-                                    </ItemsControl.Template>
-
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            
-                                            <Border CornerRadius="8"
-                                                    Margin="12,6" Padding="6"
-                                                    HorizontalAlignment="{Binding Alignment}"
-                                                    Background="{Binding Background}">
-
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <ItemsControl Grid.Column="0" Background="Transparent"
-                                                                  ItemsSource="{Binding Message.Images}"
-                                                                  cmd:MouseCommands.MouseDown="{Binding OpenImagesCommand}">
-
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel Orientation="Horizontal"/>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-
-                                                                <Image Source="{Binding DataContext, RelativeSource={RelativeSource Self}, Converter={StaticResource ByteToImageConverter}}"
-                                                                    Stretch="Uniform" MaxHeight="256" Margin="1,1"/>
-
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-
-                                                    <TextBlock Grid.Column="1"
-                                                               Text="{Binding Message.Text}"
-                                                               Foreground="White" Margin="3,0"/>
-
-                                                    <TextBlock Grid.Column="3" VerticalAlignment="Bottom"
-                                                               Text="{Binding Message.Time}" 
-                                                               Foreground="#B8B8B8" Margin="3,0"/>
-                                                </Grid>
-
-                                            </Border>
-                                            
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                    
-                                </ItemsControl>
-                                
-                            </Grid>
-                        </DockPanel>
-                    </Grid>
-                    
-                </DockPanel>
-            </Grid>
-            
         </DockPanel>
 
+        <!-- WindowControlBtn -->
+        <Grid Height="14" Width="30" Margin="12"
+                      VerticalAlignment="Bottom" HorizontalAlignment="Right">
+
+            <!-- MinimizeBtn -->
+            <Button ToolTip="Minimize" Style="{StaticResource BtnAppControl}"
+                            HorizontalAlignment="Left" Background="Yellow"
+                            Command="{Binding AppCommands[MinimizeAppCommand]}"/>
+
+            <!-- CloseBtn -->
+            <Button ToolTip="Close" Style="{StaticResource BtnAppControl}"
+                            HorizontalAlignment="Right"  Background="Red"
+                            Command="{Binding AppCommands[CloseAppCommand]}"/>
+        </Grid>
+
     </Grid>
+    
 </Window>

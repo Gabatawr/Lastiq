@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Chatyx.Infrastructure.Commands.Base;
+using Lastiq.Infrastructure.Commands.Base;
 
-namespace Chatyx.Infrastructure.Commands
+namespace Lastiq.Infrastructure.Commands
 {
     class CloseAppCommand : AppCommand
     {

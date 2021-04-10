@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Chatyx.Views.Windows
+namespace Lastiq.Views.Windows
 {
     public partial class MainWindow : Window
     {
