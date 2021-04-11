@@ -8,7 +8,7 @@ namespace Lastiq.ViewModels
         //---------------------------------------------------------------------
         #region bool : ShowLoginPanel
 
-        private bool _ShowLoginPanel = false;
+        private bool _ShowLoginPanel = true;
         public bool ShowLoginPanel
         {
             get => _ShowLoginPanel;
@@ -18,7 +18,7 @@ namespace Lastiq.ViewModels
         #endregion bool : ShowLoginPanel
         #region bool : ShowUserPanel
 
-        private bool _ShowUserPanel = true;
+        private bool _ShowUserPanel = false;
         public bool ShowUserPanel
         {
             get => _ShowUserPanel;
