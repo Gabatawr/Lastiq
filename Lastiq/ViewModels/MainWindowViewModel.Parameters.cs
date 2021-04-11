@@ -8,7 +8,7 @@ namespace Lastiq.ViewModels
         //---------------------------------------------------------------------
         #region bool : ShowLoginPanel
 
-        private bool _ShowLoginPanel = true;
+        private bool _ShowLoginPanel = false;
         public bool ShowLoginPanel
         {
             get => _ShowLoginPanel;
@@ -16,10 +16,9 @@ namespace Lastiq.ViewModels
         }
 
         #endregion bool : ShowLoginPanel
-
         #region bool : ShowUserPanel
 
-        private bool _ShowUserPanel = false;
+        private bool _ShowUserPanel = true;
         public bool ShowUserPanel
         {
             get => _ShowUserPanel;
@@ -38,6 +37,17 @@ namespace Lastiq.ViewModels
         }
 
         #endregion string : PasswordText
+        //---------------------------------------------------------------------
+        #region string : UserName
+
+        private string _UserName = string.Empty;
+        public string UserName
+        {
+            get => _UserName;
+            set => Set(ref _UserName, value);
+        }
+
+        #endregion string : UserName
         //---------------------------------------------------------------------
         #region ObservableCollection<TagModel> : TagItemsCollection
 

@@ -14,7 +14,11 @@ namespace Lastiq.ViewModels
             TagItemsCollection.Add(new TagModel() { Text = "TagThree", Count = 333 });
 
             #endregion TagListTest
+            #region UserNameTest
 
+            UserName = "AUserName";
+
+            #endregion UserNameTest
 
         }
     }

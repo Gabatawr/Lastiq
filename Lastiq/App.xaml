@@ -19,6 +19,8 @@
                 <ResourceDictionary Source="Resources/Styles/TextBox.Login.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/TextBox.Password.xaml"/>
 
+                <ResourceDictionary Source="Resources/Styles/Image.UserPanelBtn.xaml"/>
+                
                 <ResourceDictionary Source="Resources/Styles/Grid.NavBtn.xaml"/>
 
                 <ResourceDictionary Source="Resources/Styles/ListBox.TagItem.xaml"/>

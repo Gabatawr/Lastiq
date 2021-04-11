@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Converters\NameShorter.cs" />
     <Compile Include="Model\TagModel.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Base.cs" />
@@ -145,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\Image.UserPanelBtn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ListBox.TagItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,13 +180,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Infrastructure\Converters\" />
     <Folder Include="Infrastructure\Services\Connection\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Media\add.png" />
     <Resource Include="Resources\Media\calendar.png" />
     <Resource Include="Resources\Media\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\logout.png" />
+    <Resource Include="Resources\Media\settings.png" />
+    <Resource Include="Resources\Media\users.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
