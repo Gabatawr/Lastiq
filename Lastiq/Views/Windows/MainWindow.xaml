@@ -28,7 +28,8 @@
                         Orientation="Vertical" Width="233">
                 
                 <!-- Searcher -->
-                <TextBox Style="{StaticResource SearchBox}" Margin="0,13"/>
+                <TextBox Style="{StaticResource SearchBox}" Margin="0,13"
+                         cmd:KeyboardCommands.EnterDown="{Binding SearchCommand}"/>
 
                 <Grid>
                     <Grid.Resources>

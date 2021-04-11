@@ -51,6 +51,17 @@ namespace Lastiq.ViewModels
 
         #endregion string : UserName
         //---------------------------------------------------------------------
+        #region string : SearchText
+
+        private string _SearchText = string.Empty;
+        public string SearchText
+        {
+            get => _SearchText;
+            set => Set(ref _SearchText, value);
+        }
+
+        #endregion string : SearchText
+        //---------------------------------------------------------------------
         #region ObservableCollection<TagModel> : TagItemsCollection
 
         private ObservableCollection<TagModel> _TagItemsCollection = new ObservableCollection<TagModel>();
@@ -72,25 +83,6 @@ namespace Lastiq.ViewModels
         }
 
         #endregion ObservableCollection<StickViewModel> : StickCollection
-
-        #region Command : TestAddCommand
-
-        private AppCommand _TestAddCommand;
-        public AppCommand TestAddCommand
-        {
-            get => _TestAddCommand ?? new ActionCommand
-                (
-                    param => ExecuteTestAddCommand(param)
-                );
-            set => _TestAddCommand = value;
-        }
-
-        private static Random r = new Random();
-        private void ExecuteTestAddCommand(object e)
-        {
-            StickCollection.Add(new StickViewModel());
-        }
-
-        #endregion Command : TestAddCommand
+        //---------------------------------------------------------------------
     }
 }

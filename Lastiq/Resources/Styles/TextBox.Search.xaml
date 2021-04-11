@@ -15,14 +15,16 @@
                          
                         <Grid>
                             <TextBox x:Name="Searcher"
-                                     Text="{TemplateBinding Text}"
+                                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                                      
                                      BorderThickness="0"
                                      Foreground="Black"
                                      Background="Transparent"
                                      
                                      VerticalContentAlignment="Center"
-                                     HorizontalContentAlignment="Center"/>
+                                     HorizontalContentAlignment="Center">
+
+                            </TextBox>
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="Search"
