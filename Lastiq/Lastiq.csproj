@@ -76,7 +76,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\Converters\NameShorter.cs" />
-    <Compile Include="Infrastructure\Converters\StickBoolToColor.cs" />
     <Compile Include="Models\StickModel.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
@@ -145,10 +144,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\DataTemplate.Stick.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Styles\Grid.NavBtn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +193,11 @@
     <Resource Include="Resources\Media\logout.png" />
     <Resource Include="Resources\Media\settings.png" />
     <Resource Include="Resources\Media\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\delete.png" />
+    <Resource Include="Resources\Media\edit.png" />
+    <Resource Include="Resources\Media\share.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

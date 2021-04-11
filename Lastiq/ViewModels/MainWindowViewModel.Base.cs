@@ -14,6 +14,12 @@ namespace Lastiq.ViewModels
             TagItemsCollection.Add(new TagModel() { Text = "TagThree", Count = 333 });
 
             #endregion TagListTest
+
+            #region StickListTest
+
+            StickCollection.Add(new StickViewModel());
+
+            #endregion StickListTest
         }
     }
 }

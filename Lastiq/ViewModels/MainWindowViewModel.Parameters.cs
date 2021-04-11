@@ -62,16 +62,16 @@ namespace Lastiq.ViewModels
 
         #endregion ObservableCollection<TagModel> : TagItemsCollection
         //---------------------------------------------------------------------
-        #region ObservableCollection<StickModel> : StickCollection
+        #region ObservableCollection<StickViewModel> : StickCollection
 
-        private ObservableCollection<StickModel> _StickCollection = new ObservableCollection<StickModel>();
-        public ObservableCollection<StickModel> StickCollection
+        private ObservableCollection<StickViewModel> _StickCollection = new ObservableCollection<StickViewModel>();
+        public ObservableCollection<StickViewModel> StickCollection
         {
             get => _StickCollection;
             set => Set(ref _StickCollection, value);
         }
 
-        #endregion ObservableCollection<StickModel> : StickCollection
+        #endregion ObservableCollection<StickViewModel> : StickCollection
 
         #region Command : TestAddCommand
 
@@ -88,7 +88,7 @@ namespace Lastiq.ViewModels
         private static Random r = new Random();
         private void ExecuteTestAddCommand(object e)
         {
-            StickCollection.Add(new StickModel());
+            StickCollection.Add(new StickViewModel());
         }
 
         #endregion Command : TestAddCommand
