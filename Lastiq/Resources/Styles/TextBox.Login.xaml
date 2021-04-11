@@ -15,7 +15,7 @@
                          
                         <Grid>
                             <TextBox x:Name="Box"
-                                     Text="{TemplateBinding Text}"
+                                     Text="{Binding UserName}"
                                      
                                      BorderThickness="0"
                                      Foreground="Black"

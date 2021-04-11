@@ -1,4 +1,4 @@
-﻿namespace Lastiq.Model
+﻿namespace Lastiq.Models
 {
     public class TagModel
     {

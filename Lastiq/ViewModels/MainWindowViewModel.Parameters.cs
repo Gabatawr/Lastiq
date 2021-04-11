@@ -1,4 +1,6 @@
-﻿using Lastiq.Model;
+﻿using Lastiq.Infrastructure.Commands.Base;
+using Lastiq.Models;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Lastiq.ViewModels
@@ -60,5 +62,38 @@ namespace Lastiq.ViewModels
 
         #endregion ObservableCollection<TagModel> : TagItemsCollection
         //---------------------------------------------------------------------
+        #region ObservableCollection<StickModel> : StickCollection
+
+        private ObservableCollection<StickModel> _StickCollection = new ObservableCollection<StickModel>();
+        public ObservableCollection<StickModel> StickCollection
+        {
+            get => _StickCollection;
+            set => Set(ref _StickCollection, value);
+        }
+
+        #endregion ObservableCollection<StickModel> : StickCollection
+
+        #region Command : TestAddCommand
+
+        private AppCommand _TestAddCommand;
+        public AppCommand TestAddCommand
+        {
+            get => _TestAddCommand ?? new ActionCommand
+                (
+                    param => ExecuteTestAddCommand(param)
+                );
+            set => _TestAddCommand = value;
+        }
+
+        private static Random r = new Random();
+        private void ExecuteTestAddCommand(object e)
+        {
+            StickCollection.Add(new StickModel()
+            {
+                 
+            });
+        }
+
+        #endregion Command : TestAddCommand
     }
 }

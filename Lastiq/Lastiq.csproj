@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Masonry, Version=2.0.2010.1215, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\wpfmasonry.2.0.2010.1215\lib\net461\Masonry.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -76,7 +79,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\Converters\NameShorter.cs" />
-    <Compile Include="Model\TagModel.cs" />
+    <Compile Include="Infrastructure\Converters\StickBoolToColor.cs" />
+    <Compile Include="Models\StickModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Base.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Commands.cs" />
@@ -112,6 +117,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

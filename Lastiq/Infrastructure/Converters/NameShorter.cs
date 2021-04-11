@@ -10,7 +10,7 @@ namespace Lastiq.Infrastructure.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var text = value as string;
-            if (text == null) return "U";
+            if (string.IsNullOrEmpty(text)) return "U";
 
             return text[0];
         }
