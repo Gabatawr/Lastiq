@@ -1,4 +1,4 @@
-﻿using Lastiq.Model;
+﻿using Lastiq.Models;
 using Lastiq.ViewModels.Base;
 
 namespace Lastiq.ViewModels

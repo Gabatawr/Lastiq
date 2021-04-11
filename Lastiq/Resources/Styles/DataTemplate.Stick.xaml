@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:convert="clr-namespace:Lastiq.Infrastructure.Converters"
+                    xmlns:m="clr-namespace:Lastiq.Models">
+
+    <DataTemplate x:Key="StickDataTemplate" DataType="{x:Type m:StickModel}">
+
+        <DataTemplate.Resources>
+            <convert:StickBoolToColor x:Key="StickColorConverter"/>
+        </DataTemplate.Resources>
+
+        <Border BorderThickness="0" CornerRadius="10"
+                Width="133" Height="133"
+                Background="{Binding Completed, Converter={StaticResource StickColorConverter}}">
+        </Border>
+
+    </DataTemplate>
+
+</ResourceDictionary>

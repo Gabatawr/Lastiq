@@ -25,6 +25,8 @@
 
                 <ResourceDictionary Source="Resources/Styles/ListBox.TagItem.xaml"/>
 
+                <ResourceDictionary Source="Resources/Styles/DataTemplate.Stick.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

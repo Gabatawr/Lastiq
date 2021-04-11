@@ -4,8 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
-        xmlns:masonry="clr-namespace:Masonry;assembly=Masonry"
+        
         xmlns:convert="clr-namespace:Lastiq.Infrastructure.Converters"
         xmlns:cmd="clr-namespace:Lastiq.Infrastructure.Commands"
         xmlns:vm="clr-namespace:Lastiq.ViewModels"
@@ -213,32 +212,37 @@
                 </Grid>
 
                 <!-- StickBox -->
-                <Grid Margin="21">
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
-                        
-                        
-                        <masonry:MasonryControl ItemsSource="{Binding Elements}"
-                                                Spacing="21" Background="Transparent">
-                            
-                            <masonry:MasonryControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type m:StickModel}">
+                <ItemsControl ItemsSource="{Binding StickCollection}">
+                    
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel ItemWidth="233" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                                    <DataTemplate.Resources>
-                                        <convert:StickBoolToColor x:Key="StickColorConverter"/>
-                                    </DataTemplate.Resources>
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer>
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
 
-                                    <Border Background="{Binding Completed, Converter={StaticResource StickColorConverter}}"
-                                            >
-                                        
-                                    </Border>
-                                    
-                                </DataTemplate>
-                            </masonry:MasonryControl.ItemTemplate>
-                            
-                        </masonry:MasonryControl>
-                        
-                    </ScrollViewer>
-                </Grid>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type m:StickModel}">
+
+                                <DataTemplate.Resources>
+                                    <convert:StickBoolToColor x:Key="StickColorConverter"/>
+                                </DataTemplate.Resources>
+
+                                <Border BorderThickness="0" CornerRadius="10" Margin="21,21,0,0" Height="300"
+                                        Background="{Binding Completed, Converter={StaticResource StickColorConverter}}">
+                                </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    
+                </ItemsControl>
 
             </DockPanel>
 

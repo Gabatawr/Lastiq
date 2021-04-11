@@ -88,10 +88,7 @@ namespace Lastiq.ViewModels
         private static Random r = new Random();
         private void ExecuteTestAddCommand(object e)
         {
-            StickCollection.Add(new StickModel()
-            {
-                 
-            });
+            StickCollection.Add(new StickModel());
         }
 
         #endregion Command : TestAddCommand
