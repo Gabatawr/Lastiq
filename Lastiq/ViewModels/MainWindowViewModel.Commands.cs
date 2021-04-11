@@ -1,6 +1,8 @@
 ﻿using Lastiq.Infrastructure.Commands;
 using Lastiq.Infrastructure.Commands.Base;
+using Prism.Commands;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Lastiq.ViewModels
@@ -47,18 +49,31 @@ namespace Lastiq.ViewModels
                 (
                     param => ExecuteSearchCommand((KeyEventArgs)param),
                     param => CanExecuteSearchCommand((KeyEventArgs)param)
-
                 );
             set => _SearchCommand = value;
         }
         private void ExecuteSearchCommand(KeyEventArgs e)
         {
+            // use SearchText prop;
             // Code command
         }
         private bool CanExecuteSearchCommand(KeyEventArgs e)
             => e.Key == Key.Enter;
 
         #endregion Command : SearchCommand
+        //---------------------------------------------------------------------
+        #region Command : TagSelectedCommand
+
+        public DelegateCommand<object> TagSelectedCommand
+        { 
+            get => new DelegateCommand<object>(param =>
+            {
+                // use param as TagModel or TagSelected prop
+                // Code command
+            });
+        } 
+
+        #endregion Command : TagSelectedCommand
         //---------------------------------------------------------------------
     }
 }

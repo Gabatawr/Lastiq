@@ -2,6 +2,7 @@
 using Lastiq.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace Lastiq.ViewModels
 {
@@ -84,5 +85,17 @@ namespace Lastiq.ViewModels
 
         #endregion ObservableCollection<StickViewModel> : StickCollection
         //---------------------------------------------------------------------
+        #region TagModel : TagSelected
+
+        private TagModel _TagSelected;
+        public TagModel TagSelected
+        {
+            get => _TagSelected;
+            set => Set(ref _TagSelected, value);
+        }
+
+        #endregion TagModel : TagSelected
+        //---------------------------------------------------------------------
+
     }
 }

@@ -9,6 +9,7 @@
         xmlns:cmd="clr-namespace:Lastiq.Infrastructure.Commands"
         xmlns:vm="clr-namespace:Lastiq.ViewModels"
         xmlns:m="clr-namespace:Lastiq.Models"
+        xmlns:ie="http://schemas.microsoft.com/xaml/behaviors"
         
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource MainWindowStyle}">
@@ -127,18 +128,22 @@
                     
                 </Grid>
                 
-                
                 <!-- TagList -->
-                <ListBox ItemsSource="{Binding TagItemsCollection}"
+                <ListBox x:Name="TagList" ItemsSource="{Binding TagItemsCollection}"
                          ItemContainerStyle="{StaticResource TagItemStyle}"
                          Style="{StaticResource TagItemsListBoxStyle}"
-                         VerticalAlignment="Bottom" Margin="0,13"> 
+                         VerticalAlignment="Bottom" Margin="0,13"
+                         SelectedItem="{Binding TagSelected}">
+
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="SelectionChanged">
+                            <ie:InvokeCommandAction Command="{Binding TagSelectedCommand}" CommandParameter="{Binding ElementName=TagList, Path=SelectedItem}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-
                             <StackPanel Orientation="Vertical"/>
-
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
 
