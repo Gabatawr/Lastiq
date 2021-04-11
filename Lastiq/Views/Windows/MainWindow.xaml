@@ -22,17 +22,52 @@
                    cmd:MouseCommands.MouseLeftButtonDown="{Binding AppCommands[MoveAppCommand]}">
 
             <!-- LeftPanel -->
-            <Grid DockPanel.Dock="Left" Background="#D6D6D6"
-                  Width="233">
+            <StackPanel DockPanel.Dock="Left" Background="#D6D6D6"
+                        Orientation="Vertical" Width="233">
                 
                 <!-- Searcher -->
-                <TextBox Style="{StaticResource SearchBox}"/>
+                <TextBox Style="{StaticResource SearchBox}" Margin="0,13"/>
 
+                <Grid>
+                    <Grid.Resources>
+                        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+                    </Grid.Resources>
+                    
+                    <!-- LoginPanel -->
+                    <StackPanel Orientation="Vertical" Margin="0,13"
+                                Visibility="{Binding Path=ShowLoginPanel, Converter={StaticResource BoolToVisibilityConverter}}">
+                        
+                        <TextBox Style="{StaticResource LoginBox}" Margin="0,0,0,5"/>
+                        <TextBox Style="{StaticResource PasswordBox}"/>
+
+                        <Grid HorizontalAlignment="Right" Margin="0,6,21,0">
+                            
+                            <Border CornerRadius="7" BorderThickness="0">
+                                <TextBlock Style="{StaticResource TextStyle}"
+                                   Text="Sing In" Opacity="0.55"
+                                   Padding="11,1"/>
+
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#B9B9B9"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </Grid>
+                        
+                    </StackPanel>
+                </Grid>
+                
+                
                 <!-- TagList -->
                 <ListBox ItemsSource="{Binding TagItemsCollection}"
                          ItemContainerStyle="{StaticResource TagItemStyle}"
                          Style="{StaticResource TagItemsListBoxStyle}"
-                         VerticalAlignment="Bottom" Margin="0,0,0,64">
+                         VerticalAlignment="Bottom" Margin="0,13"> 
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -44,7 +79,7 @@
 
                 </ListBox>
 
-            </Grid>
+            </StackPanel>
 
             <!-- MainPanel -->
             <DockPanel LastChildFill="true">

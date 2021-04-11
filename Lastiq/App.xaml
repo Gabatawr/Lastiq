@@ -14,12 +14,12 @@
                 <ResourceDictionary Source="Resources/Styles/Button.WinControl.xaml"/>
 
                 <ResourceDictionary Source="Resources/Styles/TextBlock.xaml"/>
+                
                 <ResourceDictionary Source="Resources/Styles/TextBox.Search.xaml"/>
-                
+                <ResourceDictionary Source="Resources/Styles/TextBox.Login.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TextBox.Password.xaml"/>
+
                 <ResourceDictionary Source="Resources/Styles/Grid.NavBtn.xaml"/>
-                
-                <ResourceDictionary Source="Resources/Styles/Template.PasswordBox.Border.xaml"/>
-                <ResourceDictionary Source="Resources/Styles/PasswordBox.xaml"/>
 
                 <ResourceDictionary Source="Resources/Styles/ListBox.TagItem.xaml"/>
 

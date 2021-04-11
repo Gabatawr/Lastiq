@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="SearchBox" TargetType="{x:Type TextBox}">
+    <Style x:Key="LoginBox" TargetType="{x:Type TextBox}">
         
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Montserrat"/>
         <Setter Property="Template">
@@ -14,7 +14,7 @@
                             VerticalAlignment="Top" HorizontalAlignment="Left">
                          
                         <Grid>
-                            <TextBox x:Name="Searcher"
+                            <TextBox x:Name="Box"
                                      Text="{TemplateBinding Text}"
                                      
                                      BorderThickness="0"
@@ -25,16 +25,16 @@
                                      HorizontalContentAlignment="Center"/>
 
                             <TextBlock IsHitTestVisible="False"
-                                       Text="Search"
-                                       VerticalAlignment="Center" HorizontalAlignment="Right"
-                                       Margin="0,0,8,0"
+                                       Text="Login"
+                                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                                       Margin="8,0,0,0"
                                        Opacity="0.21">
 
                                 <TextBlock.Style>
                                     <Style BasedOn="{StaticResource TextStyle}" TargetType="{x:Type TextBlock}">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=Searcher}"
+                                            <DataTrigger Binding="{Binding Text, ElementName=Box}"
                                                          Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
