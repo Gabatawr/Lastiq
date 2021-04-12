@@ -6,13 +6,19 @@ namespace Lastiq.ViewModels
 {
     public class StickViewModel : ViewModel
     {
-        public StickModel Stick { get; set; } = new StickModel();
-        
-        private SolidColorBrush _color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE600")) { Opacity = 0.64 };
+        //---------------------------------------------------------------------
+        public StickModel Stick { get; set; } = new StickModel(creatorId: 0);
+        //---------------------------------------------------------------------
+        private SolidColorBrush _color = StickModel.DefColor;
         public SolidColorBrush Color
         { 
-            get => _color;
-            set => Set(ref _color, value);
+            get => Stick.Color;
+            set
+            {
+                if (Set(ref _color, value))
+                    Stick.Color = _color;
+            }
         }
+        //---------------------------------------------------------------------
     }
 }

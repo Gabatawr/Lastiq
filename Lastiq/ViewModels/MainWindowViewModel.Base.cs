@@ -1,5 +1,7 @@
 ﻿using Lastiq.Models;
 using Lastiq.ViewModels.Base;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Lastiq.ViewModels
 {
@@ -17,9 +19,21 @@ namespace Lastiq.ViewModels
 
             #region StickListTest
 
-            StickCollection.Add(new StickViewModel());
+            StickCollection.Add(new StickViewModel() { Color = new SolidColorBrush(Colors.Yellow) });
+            StickCollection[0].Stick.Contents.Add(new TextContent("Sticker one"));
+
+            StickCollection.Add(new StickViewModel() { Color = new SolidColorBrush(Colors.Red) });
+            StickCollection[1].Stick.Contents.Add(new TextContent("Sticker two"));
+
+            StickCollection.Add(new StickViewModel() { Color = new SolidColorBrush(Colors.Green) });
+            StickCollection[2].Stick.Contents.Add(new TextContent("Sticker three"));
 
             #endregion StickListTest
+
+            PropertyChanged += OnPropertyChanged;
+
+            StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
+            StickersCollectionView.Filter = StickersFilter;
         }
     }
 }

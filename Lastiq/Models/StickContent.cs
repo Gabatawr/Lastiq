@@ -15,5 +15,6 @@ namespace Lastiq.Models
     public class TextContent : IStickContent
     {
         public string Text { get; set; } = string.Empty;
+        public TextContent(string text) => Text = text;
     }
 }

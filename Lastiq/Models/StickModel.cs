@@ -9,7 +9,8 @@ namespace Lastiq.Models
     {
         //---------------------------------------------------------------------
         // Main info
-        public int Id { get; set; }
+        static private int IDCounter = 0;
+        public int Id { get; private set; }
         public int CreatorId { get; set; }
         public List<int> FriendsId { get; set; }
             = new List<int>();
@@ -24,12 +25,12 @@ namespace Lastiq.Models
             = DateTime.MaxValue;
         //---------------------------------------------------------------------
         // View
-        public SolidColorBrush Color { get; set; }
-            = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE600")) { Opacity = 0.64 };
+        static public SolidColorBrush DefColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE600")) { Opacity = 0.64 };
+        public SolidColorBrush Color { get; set; } = DefColor;
         //---------------------------------------------------------------------
-        public StickModel(int id, int creatorId)
+        public StickModel(int creatorId)
         {
-            Id = id;
+            Id = IDCounter++;
             CreatorId = creatorId;
         }
         //---------------------------------------------------------------------
