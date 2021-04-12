@@ -9,5 +9,8 @@ namespace Lastiq.Models
     public class StickModel
     {
         public bool Completed { get; set; }
+        
+        //Я добавил это для теста поиска, если должно быть не так то сделай правильно, а я переделаю
+        public string Text { get; set; }
     }
 }

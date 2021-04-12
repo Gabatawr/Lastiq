@@ -2,7 +2,9 @@
 using Lastiq.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Lastiq.ViewModels
 {
@@ -96,6 +98,8 @@ namespace Lastiq.ViewModels
 
         #endregion TagModel : TagSelected
         //---------------------------------------------------------------------
+
+        public readonly ICollectionView StickersCollectionView;
 
     }
 }
