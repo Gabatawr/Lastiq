@@ -1,9 +1,13 @@
-﻿using Lastiq.Infrastructure.Commands;
+﻿using System;
+using Lastiq.Infrastructure.Commands;
 using Lastiq.Infrastructure.Commands.Base;
 using Prism.Commands;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using Lastiq.Models;
 
 namespace Lastiq.ViewModels
 {
@@ -27,15 +31,15 @@ namespace Lastiq.ViewModels
         private AppCommand _TestAddCommand;
         public AppCommand TestAddCommand
         {
-            get => _TestAddCommand ?? new ActionCommand
-                (
-                    param => ExecuteTestAddCommand(param)
-                );
+            get => _TestAddCommand ?? new ActionCommand(CreateStick);
             set => _TestAddCommand = value;
         }
-        private void ExecuteTestAddCommand(object e)
+
+        private AppCommand _signInCommand;
+        public AppCommand SignInCommand
         {
-            StickCollection.Add(new StickViewModel());
+            get => _signInCommand ?? new ActionCommand(SingIn);
+            set => _TestAddCommand = value;
         }
 
         #endregion Command : TestAddCommand

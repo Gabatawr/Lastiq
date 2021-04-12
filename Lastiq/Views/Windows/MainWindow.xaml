@@ -49,7 +49,8 @@
                             <Border CornerRadius="7" BorderThickness="0">
                                 <TextBlock Style="{StaticResource TextStyle}"
                                    Text="Sing In" Opacity="0.55"
-                                   Padding="11,1"/>
+                                   Padding="11,1"
+                                   cmd:MouseCommands.MouseDown="{Binding SignInCommand}"/>
 
                                 <Border.Style>
                                     <Style TargetType="{x:Type Border}">
@@ -219,7 +220,7 @@
                 </Grid>
 
                 <!-- StickBox -->
-                <ItemsControl ItemsSource="{Binding StickCollection}">
+                <ItemsControl ItemsSource="{Binding StickCollection, Mode=TwoWay}">
                     
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

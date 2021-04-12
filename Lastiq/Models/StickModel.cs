@@ -22,7 +22,7 @@ namespace Lastiq.Models
         public List<string> Tags { get; set; }
             = new List<string>();
         public DateTime DateTime { get; set; }
-            = DateTime.MaxValue;
+            = DateTime.Now;
         //---------------------------------------------------------------------
         // View
         static public SolidColorBrush DefColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE600")) { Opacity = 0.64 };
