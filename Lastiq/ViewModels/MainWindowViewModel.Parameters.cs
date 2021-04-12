@@ -59,7 +59,14 @@ namespace Lastiq.ViewModels
         public string SearchText
         {
             get => _SearchText;
-            set => Set(ref _SearchText, value);
+            set
+            {
+                Set(ref _SearchText, value);
+
+                if (string.IsNullOrEmpty(_SearchText))
+                    StickersCollectionView.Filter = null;
+                else StickersCollectionView.Filter = StickersFilter;
+            } 
         }
 
         #endregion string : SearchText
@@ -85,6 +92,11 @@ namespace Lastiq.ViewModels
         }
 
         #endregion ObservableCollection<StickViewModel> : StickCollection
+        #region ICollectionView : StickersCollectionView
+
+        public readonly ICollectionView StickersCollectionView;
+
+        #endregion ICollectionView : StickersCollectionView
         //---------------------------------------------------------------------
         #region TagModel : TagSelected
 
@@ -97,6 +109,5 @@ namespace Lastiq.ViewModels
 
         #endregion TagModel : TagSelected
         //---------------------------------------------------------------------
-        public readonly ICollectionView StickersCollectionView;
     }
 }

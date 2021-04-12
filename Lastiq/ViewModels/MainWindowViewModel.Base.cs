@@ -9,6 +9,11 @@ namespace Lastiq.ViewModels
     {
         public MainWindowViewModel()
         {
+            //---------------------------------------------------------------------
+            // Preseting
+            StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
+            //---------------------------------------------------------------------
+
             #region TagListTest
 
             TagItemsCollection.Add(new TagModel() { Text = "TagOne", Count = 1 });
@@ -29,11 +34,6 @@ namespace Lastiq.ViewModels
             StickCollection[2].Stick.Contents.Add(new TextContent("Sticker three"));
 
             #endregion StickListTest
-
-            PropertyChanged += OnPropertyChanged;
-
-            StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
-            StickersCollectionView.Filter = StickersFilter;
         }
     }
 }
