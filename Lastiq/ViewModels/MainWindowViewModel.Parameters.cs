@@ -1,9 +1,6 @@
-﻿using Lastiq.Infrastructure.Commands.Base;
-using Lastiq.Models;
-using System;
+﻿using Lastiq.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows.Controls;
 
 namespace Lastiq.ViewModels
 {

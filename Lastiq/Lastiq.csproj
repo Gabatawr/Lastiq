@@ -211,5 +211,8 @@
     <Resource Include="Resources\Media\edit.png" />
     <Resource Include="Resources\Media\share.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\check.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

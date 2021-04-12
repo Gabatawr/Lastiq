@@ -9,6 +9,7 @@ namespace Lastiq.Models
     {
         public string Text { get; set; } = string.Empty;
         public bool IsChecked { get; set; }
+        public CheckboxContent(string text) => Text = text;
     }
 
     [Serializable]
