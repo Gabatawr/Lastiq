@@ -59,10 +59,7 @@ namespace Lastiq.ViewModels
             set
             {
                 Set(ref _SearchText, value);
-
-                if (string.IsNullOrEmpty(_SearchText))
-                    StickersCollectionView.Filter = null;
-                else StickersCollectionView.Filter = StickersFilter;
+                StickersCollectionView.Refresh();
             } 
         }
 
@@ -101,7 +98,11 @@ namespace Lastiq.ViewModels
         public TagModel TagSelected
         {
             get => _TagSelected;
-            set => Set(ref _TagSelected, value);
+            set
+            {
+                Set(ref _TagSelected, value);
+                StickersCollectionView.Refresh();
+            }
         }
 
         #endregion TagModel : TagSelected

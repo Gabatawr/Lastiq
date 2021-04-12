@@ -13,6 +13,7 @@ namespace Lastiq.ViewModels
             //---------------------------------------------------------------------
             // Preseting
             StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
+            StickersCollectionView.Filter = StickersFilter;
             //---------------------------------------------------------------------
 
             #region TagListTest
@@ -36,9 +37,9 @@ namespace Lastiq.ViewModels
                 Stick.Contents.Add(new TextContent($"Teeeee eeeee eeeeeee eeeeeeeeee eeeeeee eeeeeeeeee eeeeeeeeeeee eeeeeeeeeee eeeeeeeee ee eeext {i}"));
                 Stick.Contents.Add(new CheckboxContent($"Checkbox {i}"));
 
-                for (int t = 0; t < rand.Next(5); t++)
+                for (int t = 0; t < rand.Next(TagItemsCollection.Count); t++)
                 {
-                    Stick.Tags.Add($"Tag {t}");
+                    Stick.Tags.Add(TagItemsCollection[t].Text);
                 }
                 
                 StickCollection.Add(new StickViewModel() { Stick = Stick });
