@@ -268,11 +268,14 @@
                                             </StackPanel.Resources>
 
                                             <Image Source="{StaticResource EditBtn}"
-                                               Style="{StaticResource UserPanelBtnStyle}" ToolTip="Edit"/>
+                                                   Style="{StaticResource UserPanelBtnStyle}" ToolTip="Edit"
+                                                   cmd:MouseCommands.MouseDown="{Binding EditStickCommand}"/>
                                             <Image Source="{StaticResource ShareBtn}"
-                                               Style="{StaticResource UserPanelBtnStyle}" ToolTip="Share"/>
+                                                   Style="{StaticResource UserPanelBtnStyle}" ToolTip="Share"
+                                                   cmd:MouseCommands.MouseDown="{Binding ShareStickCommand}"/>
                                             <Image Source="{StaticResource DeleteBtn}"
-                                               Style="{StaticResource UserPanelBtnStyle}" ToolTip="Delete"/>
+                                                   Style="{StaticResource UserPanelBtnStyle}" ToolTip="Delete"
+                                                   cmd:MouseCommands.MouseDown="{Binding DeleteStickCommand}"/>
 
                                         </StackPanel>
                                     </Border>

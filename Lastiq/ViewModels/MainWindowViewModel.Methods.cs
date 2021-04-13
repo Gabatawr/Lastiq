@@ -37,7 +37,7 @@ namespace Lastiq.ViewModels
                         if (c is TextContent tc) text = tc.Text;
                         else if (c is CheckboxContent cbc) text = cbc.Text;
                         else return false;
-
+                        
                         return text.ToLower().Contains(SearchText.ToLower());
                     });
             }
