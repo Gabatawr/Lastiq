@@ -282,7 +282,7 @@
                                     </Border>
 
                                     <!-- Title -->
-                                    <TextBox DockPanel.Dock="Top" Margin="9,9,0,0"
+                                    <TextBox x:Name="StickTitle" DockPanel.Dock="Top" Margin="9,9,0,0"
                                              Style="{StaticResource TextBoxStyle}"
                                              Text="{Binding Stick.Title}" BorderThickness="0"
                                              FontSize="13" Background="Transparent" Foreground="White"
@@ -377,7 +377,7 @@
                                                              Foreground="White" Background="Transparent"
                                                              Text="{Binding Text}" TextWrapping="Wrap"
                                                              Margin="19,2,0,2" BorderThickness="0"
-                                                             IsReadOnly="{Binding DataContext.ReadOnly, RelativeSource={RelativeSource FindAncestor, AncestorType=vm:StickViewModel}}"/>
+                                                             IsReadOnly="{Binding ElementName=StickTitle, Path=DataContext.ReadOnly}"/>
                                                 </DataTemplate>
                                                 
                                                 <DataTemplate DataType="{x:Type m:CheckboxContent}">
