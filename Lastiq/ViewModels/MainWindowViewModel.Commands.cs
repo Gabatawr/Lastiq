@@ -3,7 +3,6 @@ using Lastiq.Infrastructure.Commands.Base;
 using Lastiq.Models;
 using Prism.Commands;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Lastiq.ViewModels
@@ -107,27 +106,6 @@ namespace Lastiq.ViewModels
         }
 
         #endregion Command : UnselectTagCollectionCommand
-        //---------------------------------------------------------------------
-        //#region Command : TagSelectedCommand
-
-        //private DelegateCommand<object> _TagSelectedCommand;
-        //public DelegateCommand<object> TagSelectedCommand
-        //{ 
-        //    get
-        //    {
-        //        if (_TagSelectedCommand == null)
-        //        {
-        //            _TagSelectedCommand = new DelegateCommand<object>(param =>
-        //            {
-        //                //param is TagModel
-        //            });
-        //        }
-
-        //        return _TagSelectedCommand;
-        //    }
-        //} 
-
-        //#endregion Command : TagSelectedCommand
         //---------------------------------------------------------------------
     }
 }

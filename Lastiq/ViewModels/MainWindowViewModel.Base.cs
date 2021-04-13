@@ -1,7 +1,6 @@
 ﻿using Lastiq.Models;
 using Lastiq.ViewModels.Base;
 using System;
-using System.Windows.Data;
 using System.Windows.Media;
 
 namespace Lastiq.ViewModels

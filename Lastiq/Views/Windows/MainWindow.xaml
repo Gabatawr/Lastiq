@@ -283,11 +283,10 @@
 
                                     <!-- Title -->
                                     <TextBox DockPanel.Dock="Top" Margin="9,9,0,0"
-                                               Style="{StaticResource TextBoxStyle}"
-                                               Text="{Binding Stick.Title}"
-                                               FontSize="13" Background="Transparent" Foreground="White"
-                                               BorderThickness="0"
-                                               IsReadOnly="{Binding ReadOnly}"/>
+                                             Style="{StaticResource TextBoxStyle}"
+                                             Text="{Binding Stick.Title}" BorderThickness="0"
+                                             FontSize="13" Background="Transparent" Foreground="White"
+                                             IsReadOnly="{Binding ReadOnly}"/>
 
                                     <Grid DockPanel.Dock="Bottom">
                                         <Grid.RowDefinitions>
@@ -375,13 +374,10 @@
                                                 
                                                 <DataTemplate DataType="{x:Type m:TextContent}">
                                                     <TextBox Style="{StaticResource TextBoxStyle}" 
-                                                             Foreground="White"
-                                                             Background="Transparent"
-                                                             Text="{Binding Text}" 
-                                                             Margin="19,2,0,2" 
-                                                             TextWrapping="Wrap"
-                                                             IsReadOnly="{Binding ReadOnly, RelativeSource={ RelativeSource FindAncestor, AncestorType=vm:StickViewModel }}"
-                                                             BorderThickness="0"/>
+                                                             Foreground="White" Background="Transparent"
+                                                             Text="{Binding Text}" TextWrapping="Wrap"
+                                                             Margin="19,2,0,2" BorderThickness="0"
+                                                             IsReadOnly="{Binding DataContext.ReadOnly, RelativeSource={RelativeSource FindAncestor, AncestorType=vm:StickViewModel}}"/>
                                                 </DataTemplate>
                                                 
                                                 <DataTemplate DataType="{x:Type m:CheckboxContent}">
