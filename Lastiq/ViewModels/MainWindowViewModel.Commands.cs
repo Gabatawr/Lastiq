@@ -21,24 +21,36 @@ namespace Lastiq.ViewModels
 
         #endregion Commands : AppCommands
         //---------------------------------------------------------------------
-        #region Command : TestAddCommand
+        #region Command : AddStickCommand
 
-        private AppCommand _TestAddCommand;
-        public AppCommand TestAddCommand
+        private AppCommand _AddStickCommand;
+        public AppCommand AddStickCommand
         {
-            get => _TestAddCommand ?? new ActionCommand(CreateStick);
-            set => _TestAddCommand = value;
+            get
+            {
+                if (_AddStickCommand == null)
+                    _AddStickCommand = new ActionCommand(CreateStick);
+
+                return _AddStickCommand;
+            }
+            set => _AddStickCommand = value;
         }
 
-        #endregion Command : TestAddCommand
+        #endregion Command : AddStickCommand
         //---------------------------------------------------------------------
         #region Command : SignInCommand
 
-        private AppCommand _signInCommand;
+        private AppCommand _SignInCommand;
         public AppCommand SignInCommand
         {
-            get => _signInCommand ?? new ActionCommand(SingIn);
-            set => _TestAddCommand = value;
+            get
+            {
+                if (_SignInCommand == null)
+                    _SignInCommand = new ActionCommand(SingIn);
+                
+                return _SignInCommand;
+            } 
+            set => _AddStickCommand = value;
         }
 
         #endregion Command : SignInCommand
@@ -48,11 +60,18 @@ namespace Lastiq.ViewModels
         private AppCommand _SearchCommand;
         public AppCommand SearchCommand
         {
-            get => _SearchCommand ?? new ActionCommand
-                (
-                    param => ExecuteSearchCommand((KeyEventArgs)param),
-                    param => CanExecuteSearchCommand((KeyEventArgs)param)
-                );
+            get
+            {
+                if (_SearchCommand == null)
+                {
+                    _SearchCommand = new ActionCommand
+                    (
+                        param => ExecuteSearchCommand((KeyEventArgs)param),
+                        param => CanExecuteSearchCommand((KeyEventArgs)param)
+                    );
+                }
+                return _SearchCommand;
+            }
             set => _SearchCommand = value;
         }
         private void ExecuteSearchCommand(KeyEventArgs e)
@@ -67,13 +86,22 @@ namespace Lastiq.ViewModels
         //---------------------------------------------------------------------
         #region Command : TagSelectedCommand
 
+        private DelegateCommand<object> _TagSelectedCommand;
         public DelegateCommand<object> TagSelectedCommand
         { 
-            get => new DelegateCommand<object>(param =>
+            get
             {
-                // use param as TagModel or TagSelected prop
-                // Code command
-            });
+                if (_TagSelectedCommand == null)
+                {
+                    _TagSelectedCommand = new DelegateCommand<object>(param =>
+                    {
+                        // use param as TagModel or TagSelected prop
+                        // Code command
+                    });
+                }
+
+                return _TagSelectedCommand;
+            }
         } 
 
         #endregion Command : TagSelectedCommand
