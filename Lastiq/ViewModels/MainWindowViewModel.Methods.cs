@@ -19,18 +19,26 @@ namespace Lastiq.ViewModels
             //Comparing sticker text and searcher text
             if (view.Stick.Contents.Count == 0) return false;
 
-            return view.Stick.Contents.Any(c =>
-            {
-                string text;
-                if (c is TextContent tc) text = tc.Text;
-                else if (c is CheckboxContent cbc) text = cbc.Text;
-                else return false;
+            bool search =
+                view.Stick.Title.ToLower().Contains(SearchText.ToLower())
+                //Title contains searched text
+                ||  //OR
+                //Content contains searched text
+                view.Stick.Contents.Any(c =>
+                {
+                    string text;
+                    if (c is TextContent tc) text = tc.Text;
+                    else if (c is CheckboxContent cbc) text = cbc.Text;
+                    else return false;
 
-                return text.ToLower().Contains(SearchText.ToLower());
-            });
+                    return text.ToLower().Contains(SearchText.ToLower());
+                });
 
-            //TO DO:
-            //Compare tags
+            //Comparing selected tag with sticker tag
+            bool tag = true;
+            if (TagSelected != null) tag = view.Stick.Tags.Contains(TagSelected.Text);
+
+            return search && tag;
         }
         #endregion StickCollectionFilter
         //---------------------------------------------------------------------

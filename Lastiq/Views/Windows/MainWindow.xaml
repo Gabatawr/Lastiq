@@ -174,7 +174,7 @@
 
                         <!-- AddBtn -->
                         <Grid Grid.Column="0" Style="{StaticResource NavBtnGridStyle}"
-                              cmd:MouseCommands.MouseDown="{Binding TestAddCommand}">
+                              cmd:MouseCommands.MouseDown="{Binding AddStickCommand}">
                             
                             <StackPanel Orientation="Vertical"
                                         HorizontalAlignment="Center" VerticalAlignment="Center">
