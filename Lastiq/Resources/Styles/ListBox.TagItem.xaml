@@ -43,7 +43,6 @@
                                            VerticalAlignment="Center"
                                            Text="{Binding Text}"/>
                             </StackPanel>
-                            
 
                             <TextBlock x:Name="TagCount" Grid.Column="1"
                                        Style="{StaticResource TextStyle}"

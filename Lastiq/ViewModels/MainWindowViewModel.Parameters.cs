@@ -135,6 +135,7 @@ namespace Lastiq.ViewModels
                 Set(ref _TagSelected, value); 
                 StickersCollectionView.Refresh();
             }
+
         }
 
         #endregion TagModel : TagSelected
