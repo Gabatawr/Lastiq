@@ -33,7 +33,7 @@
                                        Opacity="0.21">
 
                                 <TextBlock.Style>
-                                    <Style BasedOn="{StaticResource TextStyle}" TargetType="{x:Type TextBlock}">
+                                    <Style BasedOn="{StaticResource TextBlockStyle}" TargetType="{x:Type TextBlock}">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Text, ElementName=Searcher}"
