@@ -1,6 +1,9 @@
 ﻿using Lastiq.Models;
+using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Windows.Data;
 
 namespace Lastiq.ViewModels
 {
@@ -62,22 +65,22 @@ namespace Lastiq.ViewModels
 
                 if (string.IsNullOrEmpty(_SearchText))
                     StickersCollectionView.Filter = null;
-                else StickersCollectionView.Filter = StickersFilter;
+                else StickersCollectionView.Filter = StickCollectionFilter;
             } 
         }
 
         #endregion string : SearchText
         //---------------------------------------------------------------------
-        #region ObservableCollection<TagModel> : TagItemsCollection
+        #region ObservableCollection<TagModel> : TagCollection
 
         private ObservableCollection<TagModel> _TagItemsCollection = new ObservableCollection<TagModel>();
-        public ObservableCollection<TagModel> TagItemsCollection
+        public ObservableCollection<TagModel> TagCollection
         {
             get => _TagItemsCollection;
             set => Set(ref _TagItemsCollection, value);
         }
 
-        #endregion ObservableCollection<TagModel> : TagItemsCollection
+        #endregion ObservableCollection<TagModel> : TagCollection
         //---------------------------------------------------------------------
         #region ObservableCollection<StickViewModel> : StickCollection
 
@@ -87,13 +90,41 @@ namespace Lastiq.ViewModels
             get => _StickCollection;
             set => Set(ref _StickCollection, value);
         }
+        public ICollectionView StickersCollectionView;
+
+        void StickCollectionInit()
+        {
+            StickCollection.CollectionChanged += StickCollectionChanged;
+            StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
+        }
+
+        private void StickCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (StickViewModel item in e.NewItems)
+                {
+                    item.Stick.Tags.OnAdd += TagAdded;
+                    item.Stick.Tags.OnRemove += TagRemoved;
+
+                    foreach (var tag in item.Stick.Tags)
+                        TagAdded(tag);
+                }
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                foreach (StickViewModel item in e.OldItems)
+                {
+                    item.Stick.Tags.OnAdd -= TagAdded;
+                    item.Stick.Tags.OnRemove -= TagRemoved;
+
+                    foreach (var tag in item.Stick.Tags)
+                        TagRemoved(tag);
+                }
+            }
+        }
 
         #endregion ObservableCollection<StickViewModel> : StickCollection
-        #region ICollectionView : StickersCollectionView
-
-        public readonly ICollectionView StickersCollectionView;
-
-        #endregion ICollectionView : StickersCollectionView
         //---------------------------------------------------------------------
         #region TagModel : TagSelected
 

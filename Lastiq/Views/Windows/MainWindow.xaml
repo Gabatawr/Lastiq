@@ -129,7 +129,7 @@
                 </Grid>
                 
                 <!-- TagList -->
-                <ListBox x:Name="TagList" ItemsSource="{Binding TagItemsCollection}"
+                <ListBox x:Name="TagList" ItemsSource="{Binding TagCollection}"
                          ItemContainerStyle="{StaticResource TagItemStyle}"
                          Style="{StaticResource TagItemsListBoxStyle}"
                          VerticalAlignment="Bottom" Margin="0,13"

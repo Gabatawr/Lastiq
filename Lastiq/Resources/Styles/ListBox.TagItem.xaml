@@ -32,10 +32,18 @@
                                 <ColumnDefinition Width="32"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock x:Name="TagText" Grid.Column="0"
-                                       Style="{StaticResource TextStyle}"
-                                       VerticalAlignment="Center" Margin="8,0,0,0"
-                                       Text="{Binding Text}"/>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal"
+                                        VerticalAlignment="Center" Margin="8,0,0,0">
+
+                                <TextBlock x:Name="PreTag" Style="{StaticResource TextStyle}"
+                                           VerticalAlignment="Center"
+                                           Text="#"/>
+                                <TextBlock x:Name="TagText" 
+                                           Style="{StaticResource TextStyle}"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Text}"/>
+                            </StackPanel>
+                            
 
                             <TextBlock x:Name="TagCount" Grid.Column="1"
                                        Style="{StaticResource TextStyle}"
@@ -54,6 +62,8 @@
                             <Setter TargetName="TagItemBorder"
                                     Property="Background" Value="#4C4C4C"/>
                             <Setter TargetName="TagText"
+                                    Property="Foreground" Value="White"/>
+                            <Setter TargetName="PreTag"
                                     Property="Foreground" Value="White"/>
                             <Setter TargetName="TagCount"
                                     Property="Visibility" Value="Visible"/>

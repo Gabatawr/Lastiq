@@ -12,16 +12,16 @@ namespace Lastiq.ViewModels
         {
             //---------------------------------------------------------------------
             // Preseting
-            StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
+            StickCollectionInit();
             //---------------------------------------------------------------------
 
-            #region TagListTest
+            //#region TagListTest
 
-            TagItemsCollection.Add(new TagModel() { Text = "TagOne", Count = 1 });
-            TagItemsCollection.Add(new TagModel() { Text = "TagTwo", Count = 22 });
-            TagItemsCollection.Add(new TagModel() { Text = "TagThree", Count = 333 });
+            //TagCollection.Add(new TagModel() { Text = "TagOne", Count = 1 });
+            //TagCollection.Add(new TagModel() { Text = "TagTwo", Count = 22 });
+            //TagCollection.Add(new TagModel() { Text = "TagThree", Count = 333 });
 
-            #endregion TagListTest
+            //#endregion TagListTest
 
             #region StickListTest
 

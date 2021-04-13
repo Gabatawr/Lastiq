@@ -1,5 +1,6 @@
 ﻿using Lastiq.Models;
 using Lastiq.ViewModels.Base;
+using System.ComponentModel;
 using System.Windows.Media;
 
 namespace Lastiq.ViewModels
@@ -20,5 +21,13 @@ namespace Lastiq.ViewModels
             }
         }
         //---------------------------------------------------------------------
+        public void StickViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Stick))
+            {
+                var svm = sender as StickViewModel;
+
+            }
+        }
     }
 }

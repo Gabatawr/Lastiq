@@ -6,7 +6,9 @@ namespace Lastiq.ViewModels
 {
     partial class MainWindowViewModel
     {
-        public bool StickersFilter(object obj)
+        #region StickCollectionFilter
+        //---------------------------------------------------------------------
+        public bool StickCollectionFilter(object obj)
         {
             StickViewModel view = obj as StickViewModel;
 
@@ -26,5 +28,37 @@ namespace Lastiq.ViewModels
             //TO DO:
             //Compare tags
         }
+        #endregion StickCollectionFilter
+        //---------------------------------------------------------------------
+        #region TagAddRemoveEvents
+        private void TagAdded(string tag)
+        {
+            foreach (var item in TagCollection)
+            {
+                if (item.Text == tag)
+                {
+                    item.Count++;
+                    return;
+                }
+            }
+            TagCollection.Add(new TagModel(tag));
+        }
+
+        private void TagRemoved(string tag)
+        {
+            foreach (var item in TagCollection)
+            {
+                if (item.Text == tag)
+                {
+                    item.Count--;
+                    if (item.Count < 1)
+                        TagCollection.Remove(item);
+                    return;
+                }
+            }
+        }
+
+        #endregion TagEvents
+        //---------------------------------------------------------------------
     }
 }

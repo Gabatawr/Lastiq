@@ -17,10 +17,10 @@ namespace Lastiq.Models
         //---------------------------------------------------------------------
         // Contents
         public string Title { get; set; }
-        public List<IStickContent> Contents { get; set; }
+        public List<IStickContent> Contents { get; private set; }
             = new List<IStickContent>();
-        public List<string> Tags { get; set; }
-            = new List<string>();
+        public TagList<string> Tags { get; private set; }
+            = new TagList<string>();
         public DateTime DateTime { get; set; }
             = DateTime.MaxValue;
         //---------------------------------------------------------------------

@@ -88,6 +88,7 @@
     <Compile Include="Infrastructure\Converters\NameShorter.cs" />
     <Compile Include="Models\StickContent.cs" />
     <Compile Include="Models\StickModel.cs" />
+    <Compile Include="Models\TagList.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.Base.cs" />
