@@ -82,7 +82,7 @@ namespace Lastiq.ViewModels
 
         #endregion ObservableCollection<TagModel> : TagCollection
         //---------------------------------------------------------------------
-        #region ObservableCollection<StickViewModel> : StickCollection
+        #region StickCollection
 
         private ObservableCollection<StickViewModel> _StickCollection = new ObservableCollection<StickViewModel>();
         public ObservableCollection<StickViewModel> StickCollection
@@ -124,7 +124,7 @@ namespace Lastiq.ViewModels
             }
         }
 
-        #endregion ObservableCollection<StickViewModel> : StickCollection
+        #endregion StickCollection
         //---------------------------------------------------------------------
         #region TagModel : TagSelected
 
