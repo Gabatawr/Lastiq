@@ -1,7 +1,9 @@
 ﻿using Lastiq.Models;
 using Lastiq.ViewModels.Base;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Media;
+using Lastiq.Infrastructure.Commands.Base;
 
 namespace Lastiq.ViewModels
 {
@@ -29,5 +31,29 @@ namespace Lastiq.ViewModels
 
             }
         }
+        //---------------------------------------------------------------------
+        #region Command : DeleteStickCommand
+
+        private AppCommand _DeleteStickCommand;
+        public AppCommand DeleteStickCommand
+        {
+            get
+            {
+                if (_DeleteStickCommand == null)
+                    _DeleteStickCommand = new ActionCommand(DeleteStick);
+
+                return _DeleteStickCommand;
+            }
+            set => _DeleteStickCommand = value;
+        }
+
+        private void DeleteStick(object obj)
+        {
+            var stick = obj as StickViewModel;
+            var ViewModel = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            ViewModel.StickCollection.Remove(this);
+        }
+        #endregion Command : AddStickCommand
+        //---------------------------------------------------------------------
     }
 }
