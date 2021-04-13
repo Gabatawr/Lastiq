@@ -62,9 +62,9 @@ namespace Lastiq.ViewModels
             get => _SearchText;
             set
             {
-                if (Set(ref _SearchText, value))
-                    StickersCollectionView.Refresh();
-            } 
+                Set(ref _SearchText, value);
+                StickersCollectionView.Refresh();
+            }
         }
 
         #endregion string : SearchText
@@ -133,9 +133,10 @@ namespace Lastiq.ViewModels
             get => _TagSelected;
             set
             {
-                if (Set(ref _TagSelected, value))
-                    StickersCollectionView.Refresh();
-            } 
+                Set(ref _TagSelected, value); 
+                StickersCollectionView.Refresh();
+            }
+
         }
 
         #endregion TagModel : TagSelected

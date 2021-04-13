@@ -20,7 +20,7 @@ namespace Lastiq.ViewModels
             bool searchBoxNotEmpty = string.IsNullOrEmpty(SearchText) is false;
             bool tagListHasSelect = TagSelected != null;
 
-            if (searchBoxNotEmpty is false && tagListHasSelect is false)
+          if (searchBoxNotEmpty is false && tagListHasSelect is false)
                 return true;
             //-------------------------------------------------
             bool inTitle, inContent, inTag;

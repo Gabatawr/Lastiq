@@ -47,7 +47,7 @@
                         <Grid HorizontalAlignment="Right" Margin="0,6,21,0">
                             
                             <Border CornerRadius="7" BorderThickness="0">
-                                <TextBlock Style="{StaticResource TextStyle}"
+                                <TextBlock Style="{StaticResource TextBlockStyle}"
                                            Text="Sing In" Opacity="0.55"
                                            Padding="11,1"
                                            cmd:MouseCommands.MouseDown="{Binding SignInCommand}"/>
@@ -94,13 +94,13 @@
                                     </Grid.Resources>
 
                                     <Ellipse Fill="#8139C8"/>
-                                    <TextBlock Style="{StaticResource TextStyle}"
+                                    <TextBlock Style="{StaticResource TextBlockStyle}"
                                                FontSize="13" Foreground="#FFFFFF"
                                                HorizontalAlignment="Center" VerticalAlignment="Center"
                                                Text="{Binding UserName, Converter={StaticResource NameShorterConverter}}" TextAlignment="Center"/>
                                 </Grid>
 
-                                <TextBlock Grid.Column="1" Style="{StaticResource TextStyle}"
+                                <TextBlock Grid.Column="1" Style="{StaticResource TextBlockStyle}"
                                            Text="{Binding UserName}" Margin="5,0"
                                            HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
@@ -181,7 +181,7 @@
 
                                 <Image Source="{StaticResource AddBtn}" Width="21" Opacity="0.55"
                                        RenderOptions.BitmapScalingMode="HighQuality"/>
-                                <TextBlock Style="{StaticResource TextStyle}"
+                                <TextBlock Style="{StaticResource TextBlockStyle}"
                                            Margin="0,5,0,0" Opacity="0.55"
                                            Text="Add"/>
                             </StackPanel>
@@ -201,7 +201,7 @@
 
                                 <Image Source="{StaticResource CalendarBtn}" Width="21" Opacity="0.55"
                                        RenderOptions.BitmapScalingMode="HighQuality"/>
-                                <TextBlock Style="{StaticResource TextStyle}"
+                                <TextBlock Style="{StaticResource TextBlockStyle}"
                                            Margin="0,5,0,0" Opacity="0.55"
                                            Text="Calendar"/>
 
@@ -268,6 +268,7 @@
                                             </StackPanel.Resources>
 
                                             <Image Source="{StaticResource EditBtn}"
+
                                                    Style="{StaticResource UserPanelBtnStyle}" ToolTip="Edit"
                                                    cmd:MouseCommands.MouseDown="{Binding EditStickCommand}"/>
                                             <Image Source="{StaticResource ShareBtn}"
@@ -281,10 +282,12 @@
                                     </Border>
 
                                     <!-- Title -->
-                                    <TextBlock DockPanel.Dock="Top" Margin="9,9,0,0"
-                                               Style="{StaticResource TextStyle}"
+                                    <TextBox DockPanel.Dock="Top" Margin="9,9,0,0"
+                                               Style="{StaticResource TextBoxStyle}"
                                                Text="{Binding Stick.Title}"
-                                               FontSize="13" Foreground="White"/>
+                                               FontSize="13" Background="Transparent" Foreground="White"
+                                               BorderThickness="0"
+                                               IsReadOnly="{Binding ReadOnly}"/>
 
                                     <Grid DockPanel.Dock="Bottom">
                                         <Grid.RowDefinitions>
@@ -311,10 +314,10 @@
                                                                 Background="#15000000">
                                                             
                                                             <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Style="{StaticResource TextStyle}"
+                                                                <TextBlock Style="{StaticResource TextBlockStyle}"
                                                                        VerticalAlignment="Center" Foreground="#E8E8E8"
                                                                        Text="#" Margin="2,2,0,1" Opacity="0.64"/>
-                                                                <TextBlock Style="{StaticResource TextStyle}"
+                                                                <TextBlock Style="{StaticResource TextBlockStyle}"
                                                                        VerticalAlignment="Center" Foreground="#E8E8E8"
                                                                        Text="{Binding DataContext, RelativeSource={RelativeSource Self}}"
                                                                        Margin="0,0,2,0" Opacity="0.89"/>
@@ -347,7 +350,7 @@
                                                     <Image Source="{StaticResource ClockBtn}"
                                                            Style="{StaticResource UserPanelBtnStyle}" ToolTip="Clock"/>
 
-                                                    <TextBlock Style="{StaticResource TextStyle}"
+                                                    <TextBlock Style="{StaticResource TextBlockStyle}"
                                                                VerticalAlignment="Center" Foreground="#E8E8E8"
                                                                Text="{Binding Stick.DateTime}" Opacity="0.89"/>
                                                 </StackPanel>
@@ -371,14 +374,20 @@
                                             <ItemsControl.Resources>
                                                 
                                                 <DataTemplate DataType="{x:Type m:TextContent}">
-                                                    <TextBlock Style="{StaticResource TextStyle}" Foreground="White"
-                                                               Text="{Binding Text}" Margin="19,2,0,2" TextWrapping="Wrap"/>
+                                                    <TextBox Style="{StaticResource TextBoxStyle}" 
+                                                             Foreground="White"
+                                                             Background="Transparent"
+                                                             Text="{Binding Text}" 
+                                                             Margin="19,2,0,2" 
+                                                             TextWrapping="Wrap"
+                                                             IsReadOnly="{Binding ReadOnly, RelativeSource={ RelativeSource FindAncestor, AncestorType=vm:StickViewModel }}"
+                                                             BorderThickness="0"/>
                                                 </DataTemplate>
                                                 
                                                 <DataTemplate DataType="{x:Type m:CheckboxContent}">
                                                     <CheckBox IsChecked="{Binding IsChecked}"
                                                               Margin="0,2,0,2">
-                                                        <TextBlock Style="{StaticResource TextStyle}"
+                                                        <TextBlock Style="{StaticResource TextBlockStyle}"
                                                                Text="{Binding Text}" Foreground="White"/>
                                                         
                                                         <CheckBox.Style>

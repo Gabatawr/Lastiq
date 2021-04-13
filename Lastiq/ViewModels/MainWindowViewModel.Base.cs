@@ -15,6 +15,14 @@ namespace Lastiq.ViewModels
             StickCollectionInit();
             //---------------------------------------------------------------------
 
+            #region TagListTest
+
+            TagCollection.Add(new TagModel("TagOne"));
+            TagCollection.Add(new TagModel("TagTwo"));
+            TagCollection.Add(new TagModel("TagThree"));
+
+            #endregion TagListTest
+
             #region StickListTest
 
             Random rand = new Random();
@@ -28,15 +36,11 @@ namespace Lastiq.ViewModels
                 Stick.Contents.Add(new TextContent($"Teeeee eeeee eeeeeee eeeeeeeeee eeeeeee eeeeeeeeee eeeeeeeeeeee eeeeeeeeeee eeeeeeeee ee eeext {i}"));
                 Stick.Contents.Add(new CheckboxContent($"Checkbox {i}"));
 
-                Stick.Contents.Add(new TextContent($"Text two"));
-                Stick.Contents.Add(new CheckboxContent($"Checkbox two"));
-                Stick.Contents.Add(new CheckboxContent($"Checkbox three"));
-
-                for (int t = 0; t < rand.Next(5); t++)
+                for (int t = 0; t < rand.Next(TagCollection.Count); t++)
                 {
-                    Stick.Tags.Add($"Tag {t}");
+                    Stick.Tags.Add(TagCollection[t].Text);
                 }
-                
+
                 StickCollection.Add(new StickViewModel() { Stick = Stick });
             }
 
