@@ -11,7 +11,7 @@ namespace Lastiq.ViewModels
     {
         //---------------------------------------------------------------------
         private static MainWindowViewModel MainViewModel
-            = (MainWindowViewModel) Application.Current.MainWindow.DataContext;
+            => (MainWindowViewModel) Application.Current.MainWindow.DataContext;
         //---------------------------------------------------------------------
         public StickModel Stick { get; set; } = new StickModel(creatorId: 0);
         //---------------------------------------------------------------------
