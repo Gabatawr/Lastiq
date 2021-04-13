@@ -28,6 +28,10 @@ namespace Lastiq.ViewModels
                 Stick.Contents.Add(new TextContent($"Teeeee eeeee eeeeeee eeeeeeeeee eeeeeee eeeeeeeeee eeeeeeeeeeee eeeeeeeeeee eeeeeeeee ee eeext {i}"));
                 Stick.Contents.Add(new CheckboxContent($"Checkbox {i}"));
 
+                Stick.Contents.Add(new TextContent($"Text two"));
+                Stick.Contents.Add(new CheckboxContent($"Checkbox two"));
+                Stick.Contents.Add(new CheckboxContent($"Checkbox three"));
+
                 for (int t = 0; t < rand.Next(5); t++)
                 {
                     Stick.Tags.Add($"Tag {t}");

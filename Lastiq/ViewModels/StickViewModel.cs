@@ -1,7 +1,6 @@
 ﻿using Lastiq.Infrastructure.Commands.Base;
 using Lastiq.Models;
 using Lastiq.ViewModels.Base;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -23,15 +22,6 @@ namespace Lastiq.ViewModels
             {
                 if (Set(ref _color, value))
                     Stick.Color = _color;
-            }
-        }
-        //---------------------------------------------------------------------
-        public void StickViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Stick))
-            {
-                var svm = sender as StickViewModel;
-
             }
         }
         //---------------------------------------------------------------------
