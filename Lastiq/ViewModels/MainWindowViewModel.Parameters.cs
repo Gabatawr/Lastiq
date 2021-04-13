@@ -61,11 +61,8 @@ namespace Lastiq.ViewModels
             get => _SearchText;
             set
             {
-                Set(ref _SearchText, value);
-
-                if (string.IsNullOrEmpty(_SearchText))
-                    StickersCollectionView.Filter = null;
-                else StickersCollectionView.Filter = StickCollectionFilter;
+                if (Set(ref _SearchText, value))
+                    StickersCollectionView.Refresh();
             } 
         }
 
@@ -96,6 +93,7 @@ namespace Lastiq.ViewModels
         {
             StickCollection.CollectionChanged += StickCollectionChanged;
             StickersCollectionView = CollectionViewSource.GetDefaultView(StickCollection);
+            StickersCollectionView.Filter = StickCollectionFilter;
         }
 
         private void StickCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -132,7 +130,11 @@ namespace Lastiq.ViewModels
         public TagModel TagSelected
         {
             get => _TagSelected;
-            set => Set(ref _TagSelected, value);
+            set
+            {
+                if (Set(ref _TagSelected, value))
+                    StickersCollectionView.Refresh();
+            } 
         }
 
         #endregion TagModel : TagSelected

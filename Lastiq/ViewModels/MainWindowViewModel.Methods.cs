@@ -10,28 +10,44 @@ namespace Lastiq.ViewModels
 {
     partial class MainWindowViewModel
     {
-        #region StickCollectionFilter
         //---------------------------------------------------------------------
+        #region StickCollectionFilter
+
         public bool StickCollectionFilter(object obj)
         {
             StickViewModel view = obj as StickViewModel;
+            //-------------------------------------------------
+            bool searchBoxNotEmpty = string.IsNullOrEmpty(SearchText) is false;
+            bool tagListHasSelect = TagSelected != null;
 
-            //Comparing sticker text and searcher text
-            if (view.Stick.Contents.Count == 0) return false;
-
-            return view.Stick.Contents.Any(c =>
+            if (searchBoxNotEmpty is false && tagListHasSelect is false)
+                return true;
+            //-------------------------------------------------
+            bool inTitle, inContent, inTag;
+            inTitle = inContent = inTag = false;
+            //-------------------------------------------------
+            if (searchBoxNotEmpty)
             {
-                string text;
-                if (c is TextContent tc) text = tc.Text;
-                else if (c is CheckboxContent cbc) text = cbc.Text;
-                else return false;
+                inTitle = view.Stick.Title.ToLower().Contains(SearchText.ToLower());
+                inContent = view.Stick.Contents.Count != 0
+                    &&
+                    view.Stick.Contents.Any(c =>
+                    {
+                        string text;
+                        if (c is TextContent tc) text = tc.Text;
+                        else if (c is CheckboxContent cbc) text = cbc.Text;
+                        else return false;
 
-                return text.ToLower().Contains(SearchText.ToLower());
-            });
-
-            //TO DO:
-            //Compare tags
+                        return text.ToLower().Contains(SearchText.ToLower());
+                    });
+            }
+            //-------------------------------------------------
+            inTag = tagListHasSelect
+                && view.Stick.Tags.Contains(TagSelected.Text);
+            //-------------------------------------------------
+            return inTitle || inContent || inTag;
         }
+
         #endregion StickCollectionFilter
         //---------------------------------------------------------------------
         #region TagAddRemoveEvents

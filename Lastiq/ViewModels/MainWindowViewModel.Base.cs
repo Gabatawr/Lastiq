@@ -15,14 +15,6 @@ namespace Lastiq.ViewModels
             StickCollectionInit();
             //---------------------------------------------------------------------
 
-            //#region TagListTest
-
-            //TagCollection.Add(new TagModel() { Text = "TagOne", Count = 1 });
-            //TagCollection.Add(new TagModel() { Text = "TagTwo", Count = 22 });
-            //TagCollection.Add(new TagModel() { Text = "TagThree", Count = 333 });
-
-            //#endregion TagListTest
-
             #region StickListTest
 
             Random rand = new Random();

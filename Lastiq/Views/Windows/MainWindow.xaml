@@ -137,12 +137,12 @@
                          SelectedItem="{Binding TagSelected}">
 
                     <ie:Interaction.Triggers>
-                        <ie:EventTrigger EventName="SelectionChanged">
-                            <ie:InvokeCommandAction Command="{Binding TagSelectedCommand}"
+                        <ie:EventTrigger EventName="MouseRightButtonUp">
+                            <ie:InvokeCommandAction Command="{Binding UnselectTagCollectionCommand}"
                                                     CommandParameter="{Binding ElementName=TagList, Path=SelectedItem}"/>
                         </ie:EventTrigger>
                     </ie:Interaction.Triggers>
-
+                    
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Vertical"/>
@@ -174,7 +174,7 @@
 
                         <!-- AddBtn -->
                         <Grid Grid.Column="0" Style="{StaticResource NavBtnGridStyle}"
-                              cmd:MouseCommands.MouseDown="{Binding TestAddCommand}">
+                              cmd:MouseCommands.MouseDown="{Binding AddStickCommand}">
                             
                             <StackPanel Orientation="Vertical"
                                         HorizontalAlignment="Center" VerticalAlignment="Center">

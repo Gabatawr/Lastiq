@@ -1,7 +1,9 @@
 ﻿using Lastiq.Infrastructure.Commands;
 using Lastiq.Infrastructure.Commands.Base;
+using Lastiq.Models;
 using Prism.Commands;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Lastiq.ViewModels
@@ -84,27 +86,48 @@ namespace Lastiq.ViewModels
 
         #endregion Command : SearchCommand
         //---------------------------------------------------------------------
-        #region Command : TagSelectedCommand
+        #region Command : UnselectTagCollectionCommand
 
-        private DelegateCommand<object> _TagSelectedCommand;
-        public DelegateCommand<object> TagSelectedCommand
-        { 
+        private DelegateCommand<object> _UnselectTagCollectionCommand;
+        public DelegateCommand<object> UnselectTagCollectionCommand
+        {
             get
             {
-                if (_TagSelectedCommand == null)
+                if (_UnselectTagCollectionCommand == null)
                 {
-                    _TagSelectedCommand = new DelegateCommand<object>(param =>
+                    _UnselectTagCollectionCommand = new DelegateCommand<object>(param =>
                     {
-                        // use param as TagModel or TagSelected prop
-                        // Code command
+                        if (param is TagModel tag && tag == TagSelected)
+                            TagSelected = null;
                     });
                 }
 
-                return _TagSelectedCommand;
+                return _UnselectTagCollectionCommand;
             }
-        } 
+        }
 
-        #endregion Command : TagSelectedCommand
+        #endregion Command : UnselectTagCollectionCommand
+        //---------------------------------------------------------------------
+        //#region Command : TagSelectedCommand
+
+        //private DelegateCommand<object> _TagSelectedCommand;
+        //public DelegateCommand<object> TagSelectedCommand
+        //{ 
+        //    get
+        //    {
+        //        if (_TagSelectedCommand == null)
+        //        {
+        //            _TagSelectedCommand = new DelegateCommand<object>(param =>
+        //            {
+        //                //param is TagModel
+        //            });
+        //        }
+
+        //        return _TagSelectedCommand;
+        //    }
+        //} 
+
+        //#endregion Command : TagSelectedCommand
         //---------------------------------------------------------------------
     }
 }
