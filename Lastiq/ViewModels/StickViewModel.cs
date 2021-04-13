@@ -11,6 +11,17 @@ namespace Lastiq.ViewModels
     public class StickViewModel : ViewModel
     {
         //---------------------------------------------------------------------
+        private bool _readOnly = true;
+        public bool ReadOnly
+        {
+            get => _readOnly;
+            set
+            {
+                _readOnly = value;
+                OnPropertyChanged();
+            }
+        }
+        //---------------------------------------------------------------------
         private static MainWindowViewModel MainViewModel
             => (MainWindowViewModel) Application.Current.MainWindow.DataContext;
         //---------------------------------------------------------------------
@@ -41,19 +52,29 @@ namespace Lastiq.ViewModels
         private AppCommand _DeleteStickCommand;
         public AppCommand DeleteStickCommand
         {
-            get
-            {
-                if (_DeleteStickCommand == null)
-                    _DeleteStickCommand = new ActionCommand(DeleteStick);
-
-                return _DeleteStickCommand;
-            }
+            get => _DeleteStickCommand ?? (_DeleteStickCommand = new ActionCommand(DeleteStick));
             set => _DeleteStickCommand = value;
         }
 
         private void DeleteStick(object obj) => MainViewModel.StickCollection.Remove(this);
-        
+
         #endregion Command : DeleteStickCommand
+        //---------------------------------------------------------------------
+        #region Command : EditStickCommand
+
+        private AppCommand _EditStickCommand;
+        public AppCommand EditStickCommand
+        {
+            get => _EditStickCommand ?? (_EditStickCommand = new ActionCommand(EditStick));
+            set => _EditStickCommand = value;
+        }
+
+        private void EditStick(object obj)
+        {
+            ReadOnly = !ReadOnly;
+        }
+
+        #endregion Command : EditStickCommand
         //---------------------------------------------------------------------
     }
 }
