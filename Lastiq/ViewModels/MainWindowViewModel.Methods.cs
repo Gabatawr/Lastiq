@@ -86,21 +86,15 @@ namespace Lastiq.ViewModels
         private void CreateStick(object e)
         {
             Client.Sender.CreateSticker();
-            var rand = new Random();
-            var Stick = new StickModel(creatorId: 0)
-            {
-                Title = $"New stick",
-                Color = new SolidColorBrush(new Color() { A = 255, R = (byte)rand.Next(256), G = (byte)rand.Next(256), B = (byte)rand.Next(256) })
-            };
-            Stick.Contents.Add(new TextContent($"Text"));
-            StickCollection.Add(new StickViewModel() { Stick = Stick });
         }
 
         private void ProcessCreateStickResult(AnswerId answer)
         {
-            Client.Listener.СreatingStickerForHander(answer);
+            var stick = new StickViewModel();
+            stick.FromStick(Client.Listener.СreatingStickerForHander(answer));
+            StickCollection.Add(stick);
         }
-        
+
         #endregion CreateStick
         //---------------------------------------------------------------------
         #region SingIn
@@ -141,6 +135,25 @@ namespace Lastiq.ViewModels
         }
 
         #endregion SingIn
+        //---------------------------------------------------------------------
+        #region RemoveSticker
+
+        public void RemoveSticker(StickViewModel sticker)
+        {
+            Client.Sender.DeleteSticker(Client.User.sticks.IndexOf(sticker.ToStick()));
+            StickCollection.Remove(sticker);
+        }
+
+        #endregion RemoveSticker
+        //---------------------------------------------------------------------
+        #region StickerEdited
+
+        public void StickerEdited(StickViewModel sticker)
+        {
+            Client.Sender.SaveSticker(sticker.ToStick(), Client.User.sticks.IndexOf(Client.User.sticks.Find((stick => stick.id == sticker.Stick.Id))));
+        }
+
+        #endregion StickerEdited
         //---------------------------------------------------------------------
 
     }

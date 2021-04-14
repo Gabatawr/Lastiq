@@ -62,7 +62,7 @@ namespace SticksyClient
             Transfer.SendData(socket, new AddFriend(User.id, idFriend, idStick));
         }
 
-        public void EditTitle(int indexSticker, int idContent, string title)
+        public void EditTitle(int indexSticker, string title)
         {
             Stick stick = User.sticks[indexSticker];
             if (stick.title != title)
@@ -132,8 +132,12 @@ namespace SticksyClient
             }
         }
 
-        private void SaveSticker(Stick stick)
+        public void SaveSticker(Stick stick, int index = -1)
         {
+            if (index >= 0)
+            {
+                User.sticks[index] = stick;
+            }
             Transfer.SendData(socket, new EditStick(stick));
         }
     }
