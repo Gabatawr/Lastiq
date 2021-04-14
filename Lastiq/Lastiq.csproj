@@ -219,10 +219,7 @@
     <Resource Include="Resources\Media\check.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SticksyClient\SticksyClient\SticksyClient.csproj">
-      <Project>{16bccd79-c4f5-4835-9c7b-4ea97dd79c99}</Project>
-      <Name>SticksyClient</Name>
-    </ProjectReference>
+    <Resource Include="Resources\Media\del.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

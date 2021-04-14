@@ -2,8 +2,10 @@
 using Lastiq.Infrastructure.Commands.Base;
 using Lastiq.Models;
 using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Lastiq.ViewModels
 {
@@ -35,6 +37,18 @@ namespace Lastiq.ViewModels
                 return _AddStickCommand;
             }
             set => _AddStickCommand = value;
+        }
+
+        private void CreateStick(object e)
+        {
+            var rand = new Random();
+            var Stick = new StickModel(creatorId: 0)
+            {
+                Title = $"New stick",
+                Color = new SolidColorBrush(new Color() { A = 255, R = (byte)rand.Next(256), G = (byte)rand.Next(256), B = (byte)rand.Next(256) })
+            };
+            Stick.Contents.Add(new TextContent($"Text"));
+            StickCollection.Add(new StickViewModel() { Stick = Stick, ReadOnly = false }); ;
         }
 
         #endregion Command : AddStickCommand

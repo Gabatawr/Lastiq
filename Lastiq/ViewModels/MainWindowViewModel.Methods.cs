@@ -1,11 +1,11 @@
 ﻿using Lastiq.Models;
-using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using SticksyClient;
 using SticksyProtocol;
+
 
 namespace Lastiq.ViewModels
 {
@@ -97,6 +97,7 @@ namespace Lastiq.ViewModels
 
         #endregion CreateStick
         //---------------------------------------------------------------------
+
         #region SingIn
 
         private void SingIn(object e)
