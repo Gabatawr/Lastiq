@@ -294,39 +294,86 @@
                                         
                                         <!-- TagList -->
                                         <Grid Grid.Row="0">
-                                            <ItemsControl x:Name="Tags" ItemsSource="{Binding Stick.Tags}"
-                                                     VerticalAlignment="Bottom">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="18"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <WrapPanel Orientation="Horizontal"/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
+                                            <Grid.Resources>
+                                                <BitmapImage x:Key="AddBtn" UriSource="pack://application:,,,/Resources/Media/add.png" />
+                                            </Grid.Resources>
 
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        
-                                                        <Border x:Name="TimeBorder" Grid.Column="0"
-                                                                CornerRadius="10" Padding="5,1" Margin="3"
+                                            <Image Grid.Column="0" Width="11" Height="11" Margin="2,4,0,0"
+                                                   VerticalAlignment="Top" HorizontalAlignment="Center"
+                                                   Source="{StaticResource AddBtn}" ToolTip="New Tag"
+                                                   Style="{StaticResource UserPanelBtnStyle}">
+                                                
+                                                <ie:Interaction.Triggers>
+                                                    <ie:EventTrigger EventName="MouseDown">
+                                                        <ie:InvokeCommandAction Command="{Binding AddTagCommand}"
+                                                                                CommandParameter="{Binding ElementName=TagsInStick, Path=Parent}"/>
+                                                    </ie:EventTrigger>
+                                                </ie:Interaction.Triggers>
+                                                
+                                            </Image>
+                                            
+                                            <WrapPanel x:Name="TagsInStick" Grid.Column="1" Orientation="Horizontal" MinHeight="24">
+
+                                                <ItemsControl x:Name="Tags" ItemsSource="{Binding Stick.Tags}"
+                                                              VerticalAlignment="Bottom">
+
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+
+                                                            <Border x:Name="TimeBorder" Grid.Column="0"
+                                                                CornerRadius="10" Padding="5,1" Margin="0,0,3,3"
                                                                 Background="#15000000">
-                                                            
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Style="{StaticResource TextBlockStyle}"
+
+                                                                <StackPanel Orientation="Horizontal">
+
+                                                                    <StackPanel.Resources>
+                                                                        <BitmapImage x:Key="DelBtn" UriSource="pack://application:,,,/Resources/Media/del.png" />
+                                                                    </StackPanel.Resources>
+
+                                                                    <TextBlock Style="{StaticResource TextBlockStyle}"
                                                                        VerticalAlignment="Center" Foreground="#E8E8E8"
                                                                        Text="#" Margin="2,2,0,1" Opacity="0.64"/>
-                                                                <TextBlock Style="{StaticResource TextBlockStyle}"
+                                                                    <TextBlock Style="{StaticResource TextBlockStyle}"
                                                                        VerticalAlignment="Center" Foreground="#E8E8E8"
                                                                        Text="{Binding DataContext, RelativeSource={RelativeSource Self}}"
                                                                        Margin="0,0,2,0" Opacity="0.89"/>
-                                                            </StackPanel>
-                                                            
-                                                        </Border>
-                                                        
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
 
-                                            </ItemsControl>
+                                                                    <Image Source="{StaticResource DelBtn}" Width="7" Height="7"
+                                                                           Style="{StaticResource UserPanelBtnStyle}" ToolTip="Del Tag">
+                                                                        
+                                                                        <ie:Interaction.Triggers>
+                                                                            <ie:EventTrigger EventName="MouseDown">
+                                                                                <ie:InvokeCommandAction Command="{Binding DataContext.DeleteTagCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=vm:StickViewModel}}"
+                                                                                                        CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Self}}"/>
+                                                                            </ie:EventTrigger>
+                                                                        </ie:Interaction.Triggers>
+                                                                            
+                                                                    </Image>
+
+                                                                </StackPanel>
+
+                                                            </Border>
+
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+
+                                                </ItemsControl>
+
+                                            </WrapPanel>
+
                                         </Grid>
+                                        
 
                                         <!-- DateTime -->
                                         <Grid Grid.Row="1">
