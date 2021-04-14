@@ -14,8 +14,17 @@
 
         <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Montserrat"/>
         <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="11"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="BorderThickness" Value="0"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsReadOnly" Value="false">
+                <Setter Property="Background" Value="#37000000"/>
+            </Trigger>
+        </Style.Triggers>
 
     </Style>
 

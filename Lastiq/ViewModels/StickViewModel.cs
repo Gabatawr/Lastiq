@@ -10,17 +10,6 @@ namespace Lastiq.ViewModels
     public class StickViewModel : ViewModel
     {
         //---------------------------------------------------------------------
-        private bool _readOnly = true;
-        public bool ReadOnly
-        {
-            get => _readOnly;
-            set
-            {
-                _readOnly = value;
-                OnPropertyChanged();
-            }
-        }
-        //---------------------------------------------------------------------
         private static MainWindowViewModel MainViewModel
             => (MainWindowViewModel) Application.Current.MainWindow.DataContext;
         //---------------------------------------------------------------------
@@ -65,6 +54,35 @@ namespace Lastiq.ViewModels
         }
 
         #endregion Command : EditStickCommand
+        //---------------------------------------------------------------------
+        #region bool : StickReadOnly
+
+        private bool _ReadOnly = true;
+        public bool ReadOnly
+        {
+            get => _ReadOnly;
+            set => Set(ref _ReadOnly, value);
+        }
+
+        #endregion bool : StickReadOnly
+        //---------------------------------------------------------------------
+
+        #region Command : CheckboxClickCommand
+
+        private AppCommand _CheckboxClickCommand;
+        public AppCommand CheckboxClickCommand
+        {
+            get => _CheckboxClickCommand ?? (_CheckboxClickCommand = new ActionCommand(CheckboxClick));
+            set => _CheckboxClickCommand = value;
+        }
+
+        private void CheckboxClick(object obj)
+        {
+            var checkbox = obj as CheckboxContent;
+            checkbox.IsChecked = !checkbox.IsChecked;
+        }
+
+        #endregion Command : CheckboxClickCommand
         //---------------------------------------------------------------------
     }
 }

@@ -282,12 +282,10 @@
                                     </Border>
 
                                     <!-- Title -->
-                                    <TextBox DockPanel.Dock="Top" Margin="9,9,0,0"
-                                               Style="{StaticResource TextBoxStyle}"
-                                               Text="{Binding Stick.Title}"
-                                               FontSize="13" Background="Transparent" Foreground="White"
-                                               BorderThickness="0"
-                                               IsReadOnly="{Binding ReadOnly}"/>
+                                    <TextBox x:Name="StickTitle" DockPanel.Dock="Top" Margin="9,9,0,0"
+                                             Style="{StaticResource TextBoxStyle}"
+                                             Text="{Binding Stick.Title}" FontSize="13"
+                                             IsReadOnly="{Binding ReadOnly}"/>
 
                                     <Grid DockPanel.Dock="Bottom">
                                         <Grid.RowDefinitions>
@@ -375,20 +373,16 @@
                                                 
                                                 <DataTemplate DataType="{x:Type m:TextContent}">
                                                     <TextBox Style="{StaticResource TextBoxStyle}" 
-                                                             Foreground="White"
-                                                             Background="Transparent"
-                                                             Text="{Binding Text}" 
-                                                             Margin="19,2,0,2" 
-                                                             TextWrapping="Wrap"
-                                                             IsReadOnly="{Binding ReadOnly, RelativeSource={ RelativeSource FindAncestor, AncestorType=vm:StickViewModel }}"
-                                                             BorderThickness="0"/>
+                                                             Text="{Binding Text}" Margin="19,2,0,2"
+                                                             IsReadOnly="{Binding ElementName=StickTitle, Path=DataContext.ReadOnly}"/>
                                                 </DataTemplate>
                                                 
                                                 <DataTemplate DataType="{x:Type m:CheckboxContent}">
                                                     <CheckBox IsChecked="{Binding IsChecked}"
-                                                              Margin="0,2,0,2">
-                                                        <TextBlock Style="{StaticResource TextBlockStyle}"
-                                                               Text="{Binding Text}" Foreground="White"/>
+                                                              Margin="19,2,0,2">
+                                                        <TextBox Style="{StaticResource TextBoxStyle}"
+                                                                 Text="{Binding Text}" Margin="4,0,0,0"
+                                                                 IsReadOnly="{Binding ElementName=StickTitle, Path=DataContext.ReadOnly}"/>
                                                         
                                                         <CheckBox.Style>
                                                             <Style TargetType="{x:Type CheckBox}">
@@ -396,17 +390,27 @@
                                                                     <Setter.Value>
                                                                         <ControlTemplate TargetType="{x:Type CheckBox}">
                                                                             <StackPanel Orientation="Horizontal">
-                                                                                <Border Width="13" Height="13" Margin="3,0"
+
+                                                                                <Border Width="13" Height="13"
                                                                                         CornerRadius="2"
                                                                                         BorderThickness="1" BorderBrush="#90FFFFFF">
-
+                                                                                    
                                                                                     <Border.Resources>
                                                                                         <BitmapImage x:Key="CheckBtn" UriSource="pack://application:,,,/Resources/Media/check.png" />
                                                                                     </Border.Resources>
 
                                                                                     <Image x:Name="Checker" Source="{StaticResource CheckBtn}" Width="7" Height="7"
                                                                                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                                                          Visibility="Hidden" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                                                                          Opacity="0" RenderOptions.BitmapScalingMode="HighQuality">
+                                                                                        
+                                                                                        <ie:Interaction.Triggers>
+                                                                                            <ie:EventTrigger EventName="MouseDown">
+                                                                                                <ie:InvokeCommandAction Command="{Binding CheckboxClickCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=vm:StickViewModel}}"
+                                                                                                                    CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType=m:CheckboxContent}}"/>
+                                                                                            </ie:EventTrigger>
+                                                                                        
+                                                                                        </ie:Interaction.Triggers>
+                                                                                    </Image>
                                                                                 </Border>
                                                                                         
                                                                                 <ContentPresenter VerticalAlignment="Center"/>
@@ -414,7 +418,7 @@
 
                                                                             <ControlTemplate.Triggers>
                                                                                 <Trigger Property="IsChecked" Value="True">
-                                                                                    <Setter TargetName="Checker" Property="Visibility" Value="Visible"/>
+                                                                                    <Setter TargetName="Checker" Property="Opacity" Value="1"/>
                                                                                 </Trigger>
                                                                             </ControlTemplate.Triggers>
                                                                         </ControlTemplate>
