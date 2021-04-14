@@ -215,5 +215,8 @@
   <ItemGroup>
     <Resource Include="Resources\Media\check.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\del.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

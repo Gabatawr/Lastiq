@@ -1,9 +1,11 @@
 ﻿using Lastiq.Infrastructure.Commands.Base;
 using Lastiq.Models;
 using Lastiq.ViewModels.Base;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
-using Lastiq.Infrastructure.Commands.Base;
 
 namespace Lastiq.ViewModels
 {
@@ -66,7 +68,6 @@ namespace Lastiq.ViewModels
 
         #endregion bool : StickReadOnly
         //---------------------------------------------------------------------
-
         #region Command : CheckboxClickCommand
 
         private AppCommand _CheckboxClickCommand;
@@ -83,6 +84,40 @@ namespace Lastiq.ViewModels
         }
 
         #endregion Command : CheckboxClickCommand
+        //---------------------------------------------------------------------
+        #region Command : AddTagCommand
+
+        private AppCommand _AddTagCommand;
+        public AppCommand AddTagCommand
+        {
+            get => _AddTagCommand ?? (_AddTagCommand = new ActionCommand(AddTag));
+            set => _AddTagCommand = value;
+        }
+
+        private void AddTag(object obj)
+        {
+            string newTag = "NewTag";
+
+            Stick.Tags.Add(newTag);
+        }
+
+        #endregion Command : AddTagCommand
+        //---------------------------------------------------------------------
+        #region Command : DelTagCommand
+
+        private AppCommand _DelTagCommand;
+        public AppCommand DelTagCommand
+        {
+            get => _DelTagCommand ?? (_DelTagCommand = new ActionCommand(DelTag));
+            set => _DelTagCommand = value;
+        }
+
+        private void DelTag(object obj)
+        {
+            Stick.Tags.Remove(obj as string);
+        }
+
+        #endregion Command : DelTagCommand
         //---------------------------------------------------------------------
     }
 }

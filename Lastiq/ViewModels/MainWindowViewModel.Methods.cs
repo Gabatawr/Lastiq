@@ -1,9 +1,7 @@
 ﻿using Lastiq.Models;
-using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Media;
 
 namespace Lastiq.ViewModels
 {
