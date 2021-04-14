@@ -66,5 +66,23 @@ namespace Lastiq.ViewModels
 
         #endregion bool : StickReadOnly
         //---------------------------------------------------------------------
+
+        #region Command : CheckboxClickCommand
+
+        private AppCommand _CheckboxClickCommand;
+        public AppCommand CheckboxClickCommand
+        {
+            get => _CheckboxClickCommand ?? (_CheckboxClickCommand = new ActionCommand(CheckboxClick));
+            set => _CheckboxClickCommand = value;
+        }
+
+        private void CheckboxClick(object obj)
+        {
+            var checkbox = obj as CheckboxContent;
+            checkbox.IsChecked = !checkbox.IsChecked;
+        }
+
+        #endregion Command : CheckboxClickCommand
+        //---------------------------------------------------------------------
     }
 }
