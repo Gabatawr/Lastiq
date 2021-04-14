@@ -1,7 +1,10 @@
 ﻿using Lastiq.Models;
 using Lastiq.ViewModels.Base;
 using System;
+using System.Net.Sockets;
 using System.Windows.Media;
+using SticksyClient;
+using SticksyProtocol;
 
 namespace Lastiq.ViewModels
 {
@@ -14,6 +17,11 @@ namespace Lastiq.ViewModels
             StickCollectionInit();
             //---------------------------------------------------------------------
 
+            TcpClient = new TcpClient("127.0.0.1", 57650);
+            Client = new Client(TcpClient);
+            Client.Listener.SigningIn += ProcessSingInResult;
+            Client.Listener.CreatingSticker += ProcessCreateStickResult;
+            
             #region TagListTest
 
             TagCollection.Add(new TagModel("TagOne"));

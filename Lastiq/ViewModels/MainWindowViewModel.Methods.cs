@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
+using SticksyClient;
+using SticksyProtocol;
 
 namespace Lastiq.ViewModels
 {
@@ -83,6 +85,7 @@ namespace Lastiq.ViewModels
 
         private void CreateStick(object e)
         {
+            Client.Sender.CreateSticker();
             var rand = new Random();
             var Stick = new StickModel(creatorId: 0)
             {
@@ -93,6 +96,11 @@ namespace Lastiq.ViewModels
             StickCollection.Add(new StickViewModel() { Stick = Stick });
         }
 
+        private void ProcessCreateStickResult(AnswerId answer)
+        {
+            Client.Listener.СreatingStickerForHander(answer);
+        }
+        
         #endregion CreateStick
         //---------------------------------------------------------------------
         #region SingIn
@@ -117,15 +125,18 @@ namespace Lastiq.ViewModels
                 return;
             }
             //TO DO: Call SingIn in model
-            bool successfully = true; // bool successfully = SignIn(UserName, PasswordText);
+            Client.Sender.SignIn(UserName, PasswordText);
+        }
 
-            if (successfully)
+        private void ProcessSingInResult(AnswerUser answer)
+        {
+            if (Client.Listener.SignInForHandler(answer))
             {
-                //Do smth
+                MessageBox.Show("Login successful");
             }
             else
             {
-                //Show "Failed to login"
+                MessageBox.Show("Failed to login");
             }
         }
 
