@@ -2,6 +2,10 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Media;
+using SticksyClient;
+using SticksyProtocol;
+
 
 namespace Lastiq.ViewModels
 {
@@ -77,6 +81,23 @@ namespace Lastiq.ViewModels
 
         #endregion TagEvents
         //---------------------------------------------------------------------
+        #region CreateStick
+
+        private void CreateStick(object e)
+        {
+            Client.Sender.CreateSticker();
+        }
+
+        private void ProcessCreateStickResult(AnswerId answer)
+        {
+            var stick = new StickViewModel();
+            stick.FromStick(Client.Listener.СreatingStickerForHander(answer));
+            StickCollection.Add(stick);
+        }
+
+        #endregion CreateStick
+        //---------------------------------------------------------------------
+
         #region SingIn
 
         private void SingIn(object e)
@@ -99,19 +120,41 @@ namespace Lastiq.ViewModels
                 return;
             }
             //TO DO: Call SingIn in model
-            bool successfully = true; // bool successfully = SignIn(UserName, PasswordText);
+            Client.Sender.SignIn(UserName, PasswordText);
+        }
 
-            if (successfully)
+        private void ProcessSingInResult(AnswerUser answer)
+        {
+            if (Client.Listener.SignInForHandler(answer))
             {
-                //Do smth
+                MessageBox.Show("Login successful");
             }
             else
             {
-                //Show "Failed to login"
+                MessageBox.Show("Failed to login");
             }
         }
 
         #endregion SingIn
+        //---------------------------------------------------------------------
+        #region RemoveSticker
+
+        public void RemoveSticker(StickViewModel sticker)
+        {
+            Client.Sender.DeleteSticker(Client.User.sticks.IndexOf(sticker.ToStick()));
+            StickCollection.Remove(sticker);
+        }
+
+        #endregion RemoveSticker
+        //---------------------------------------------------------------------
+        #region StickerEdited
+
+        public void StickerEdited(StickViewModel sticker)
+        {
+            Client.Sender.SaveSticker(sticker.ToStick(), Client.User.sticks.IndexOf(Client.User.sticks.Find((stick => stick.id == sticker.Stick.Id))));
+        }
+
+        #endregion StickerEdited
         //---------------------------------------------------------------------
 
     }

@@ -10,7 +10,7 @@ namespace Lastiq.Models
         //---------------------------------------------------------------------
         // Main info
         static private int IDCounter = 0;
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public int CreatorId { get; set; }
         public List<int> FriendsId { get; set; }
             = new List<int>();
