@@ -59,6 +59,9 @@
     <Reference Include="Prism.Wpf, Version=8.0.0.1909, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>packages\Prism.Wpf.8.0.0.1909\lib\net47\Prism.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="SticksyProtocol">
+      <HintPath>..\SticksyProtocol.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -214,6 +217,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Media\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Media\del.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SticksyClient\SticksyClient\SticksyClient.csproj">
+      <Project>{16bccd79-c4f5-4835-9c7b-4ea97dd79c99}</Project>
+      <Name>SticksyClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

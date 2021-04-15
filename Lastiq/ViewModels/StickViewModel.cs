@@ -1,9 +1,14 @@
 ﻿using Lastiq.Infrastructure.Commands.Base;
 using Lastiq.Models;
 using Lastiq.ViewModels.Base;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using Lastiq.Infrastructure.Commands.Base;
+using SticksyProtocol;
+
 
 namespace Lastiq.ViewModels
 {
@@ -25,6 +30,33 @@ namespace Lastiq.ViewModels
                     Stick.Color = _color;
             }
         }
+
+        public void FromStick(Stick stick)
+        {
+            Stick.Title = stick.title;
+            //Stick.Contents = stick.content; Conflict
+            Stick.DateTime = stick.date;
+            Stick.Color.Color = (Color)ColorConverter.ConvertFromString(stick.color);
+            Stick.Id = stick.id;
+            Stick.CreatorId = stick.idCreator;
+            //Stick.FriendsId = stick.Visiters; Conflict
+            Stick.Tags.AddRange(stick.tags);
+        }
+
+        public Stick ToStick()
+        {
+            Stick stick = new Stick(Stick.Id, Stick.CreatorId);
+            stick.title = Stick.Title;
+            //stick.content = Stick.Contents; Conflict
+            stick.date = Stick.DateTime;
+            stick.color = Stick.Color.ToString();
+            stick.id = Stick.Id;
+            stick.idCreator = Stick.CreatorId;
+            //stick.Visiters = Stick.FriendsId; Conflict
+            stick.tags = Stick.Tags;
+            return stick;
+        }
+
         //---------------------------------------------------------------------
         #region Command : DeleteStickCommand
 
@@ -35,7 +67,7 @@ namespace Lastiq.ViewModels
             set => _DeleteStickCommand = value;
         }
 
-        private void DeleteStick(object obj) => MainViewModel.StickCollection.Remove(this);
+        private void DeleteStick(object obj) => MainViewModel.RemoveSticker(this);
 
         #endregion Command : DeleteStickCommand
         //---------------------------------------------------------------------
@@ -51,6 +83,7 @@ namespace Lastiq.ViewModels
         private void EditStick(object obj)
         {
             ReadOnly = !ReadOnly;
+            if(!ReadOnly) MainViewModel.StickerEdited(this);
         }
 
         #endregion Command : EditStickCommand
@@ -66,7 +99,6 @@ namespace Lastiq.ViewModels
 
         #endregion bool : StickReadOnly
         //---------------------------------------------------------------------
-
         #region Command : CheckboxClickCommand
 
         private AppCommand _CheckboxClickCommand;
@@ -83,6 +115,40 @@ namespace Lastiq.ViewModels
         }
 
         #endregion Command : CheckboxClickCommand
+        //---------------------------------------------------------------------
+        #region Command : AddTagCommand
+
+        private AppCommand _AddTagCommand;
+        public AppCommand AddTagCommand
+        {
+            get => _AddTagCommand ?? (_AddTagCommand = new ActionCommand(AddTag));
+            set => _AddTagCommand = value;
+        }
+
+        private void AddTag(object obj)
+        {
+            string newTag = "NewTag";
+
+            Stick.Tags.Add(newTag);
+        }
+
+        #endregion Command : AddTagCommand
+        //---------------------------------------------------------------------
+        #region Command : DelTagCommand
+
+        private AppCommand _DelTagCommand;
+        public AppCommand DelTagCommand
+        {
+            get => _DelTagCommand ?? (_DelTagCommand = new ActionCommand(DelTag));
+            set => _DelTagCommand = value;
+        }
+
+        private void DelTag(object obj)
+        {
+            Stick.Tags.Remove(obj as string);
+        }
+
+        #endregion Command : DelTagCommand
         //---------------------------------------------------------------------
     }
 }
