@@ -83,10 +83,10 @@ namespace Lastiq.ViewModels
         //---------------------------------------------------------------------
         #region CreateStick
 
-        private void CreateStick(object e)
-        {
-            Client.Sender.CreateSticker();
-        }
+        //private void CreateStick(object e)
+        //{
+        //    Client.Sender.CreateSticker();
+        //}
 
         private void ProcessCreateStickResult(AnswerId answer)
         {
