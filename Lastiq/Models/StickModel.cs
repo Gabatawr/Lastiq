@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
+using SticksyProtocol;
 
 namespace Lastiq.Models
 {
@@ -17,8 +18,8 @@ namespace Lastiq.Models
         //---------------------------------------------------------------------
         // Contents
         public string Title { get; set; }
-        public List<IStickContent> Contents { get; private set; }
-            = new List<IStickContent>();
+        public List<IStickContentFrontend> Contents { get; set; }
+            = new List<IStickContentFrontend>();
         public TagList<string> Tags { get; private set; }
             = new TagList<string>();
         public DateTime DateTime { get; set; }

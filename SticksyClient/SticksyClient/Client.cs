@@ -57,10 +57,10 @@ namespace SticksyClient
             Transfer.SendData(socket, new GetUsers());
         }
 
-        public void AddFriend(int idFriend, int idStick)
-        {
-            Transfer.SendData(socket, new AddFriend(User.id, idFriend, idStick));
-        }
+        //public void AddFriend(int idFriend, int idStick)
+        //{
+        //    Transfer.SendData(socket, new AddFriend(User.id, idFriend, idStick));
+        //}
 
         public void EditTitle(int indexSticker, string title)
         {
@@ -72,25 +72,25 @@ namespace SticksyClient
             }
         }
 
-        public void EditContentText(int indexSticker, int indexContent, string text)
-        {
-            TextCheck content = User.sticks[indexSticker].content[indexContent];
-            if (content.text != text)
-            {
-                content.text = text;
-                SaveSticker(User.sticks[indexSticker]);
-            }
-        }
+        //public void EditContentText(int indexSticker, int indexContent, string text)
+        //{
+        //    TextCheck content = User.sticks[indexSticker].content[indexContent];
+        //    if (content.text != text)
+        //    {
+        //        content.text = text;
+        //        SaveSticker(User.sticks[indexSticker]);
+        //    }
+        //}
 
-        public void EditContentIsChecked(int indexSticker, int indexContent, bool isChecked)
-        {
-            TextCheck content = User.sticks[indexSticker].content[indexContent];
-            if (content.isChecked != isChecked)
-            {
-                content.isChecked = isChecked;
-                SaveSticker(User.sticks[indexSticker]);
-            }
-        }
+        //public void EditContentIsChecked(int indexSticker, int indexContent, bool isChecked)
+        //{
+        //    TextCheck content = User.sticks[indexSticker].content[indexContent];
+        //    if (content.isChecked != isChecked)
+        //    {
+        //        content.isChecked = isChecked;
+        //        SaveSticker(User.sticks[indexSticker]);
+        //    }
+        //}
 
         public void EditTag(int indexSticker, int indexTag, string tag)
         {
@@ -174,7 +174,7 @@ namespace SticksyClient
         public bool SignUpForHandler(AnswerId answerId, string login, string password)
         {
             if (answerId.id == -1) return false;
-            User = new User(answerId.id, login, password);
+            User = new User(answerId.id, login);
             return true;
         }
 

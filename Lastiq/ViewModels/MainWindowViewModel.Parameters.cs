@@ -11,6 +11,7 @@ namespace Lastiq.ViewModels
 {
     partial class MainWindowViewModel
     {
+        public bool OfflineMode = true;
         //---------------------------------------------------------------------
         #region bool : ShowLoginPanel
 

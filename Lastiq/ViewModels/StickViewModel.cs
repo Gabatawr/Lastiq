@@ -1,4 +1,5 @@
-﻿using Lastiq.Infrastructure.Commands.Base;
+﻿using System.Collections.Generic;
+using Lastiq.Infrastructure.Commands.Base;
 using Lastiq.Models;
 using Lastiq.ViewModels.Base;
 using System.Collections.ObjectModel;
@@ -34,7 +35,12 @@ namespace Lastiq.ViewModels
         public void FromStick(Stick stick)
         {
             Stick.Title = stick.title;
-            //Stick.Contents = stick.content; Conflict
+            Stick.Contents = new List<IStickContentFrontend>();
+            foreach (var content in stick.content)
+            {
+                if (content is TextContent tc) Stick.Contents.Add(new TextContentFrontend(tc));
+                else if (content is CheckboxContent cbc) Stick.Contents.Add(new CheckboxContentFrontend(cbc));
+            }
             Stick.DateTime = stick.date;
             Stick.Color.Color = (Color)ColorConverter.ConvertFromString(stick.color);
             Stick.Id = stick.id;
@@ -47,7 +53,12 @@ namespace Lastiq.ViewModels
         {
             Stick stick = new Stick(Stick.Id, Stick.CreatorId);
             stick.title = Stick.Title;
-            //stick.content = Stick.Contents; Conflict
+            stick.content = new List<IStickContent>();
+            foreach (var content in Stick.Contents)
+            {
+                if (content is TextContentFrontend tc) stick.content.Add(tc.ToSticksyTextContent());
+                else if (content is CheckboxContentFrontend cbc) stick.content.Add(cbc.ToSticksyCheckBoxContent());
+            }
             stick.date = Stick.DateTime;
             stick.color = Stick.Color.ToString();
             stick.id = Stick.Id;
@@ -111,7 +122,7 @@ namespace Lastiq.ViewModels
         private void CheckboxClick(object obj)
         {
             var checkbox = obj as CheckboxContent;
-            checkbox.IsChecked = !checkbox.IsChecked;
+            checkbox.isChecked = !checkbox.isChecked;
         }
 
         #endregion Command : CheckboxClickCommand
@@ -128,8 +139,8 @@ namespace Lastiq.ViewModels
         private void AddTag(object obj)
         {
             string newTag = "NewTag";
-
             Stick.Tags.Add(newTag);
+            MainViewModel.TagsChanged(this);
         }
 
         #endregion Command : AddTagCommand

@@ -1,21 +1,41 @@
 ﻿using System;
+using System.Net.Mime;
+using SticksyProtocol;
 
 namespace Lastiq.Models
 {
-    public interface IStickContent { }
+    public interface IStickContentFrontend { }
 
     [Serializable]
-    public class CheckboxContent : IStickContent
+    public class CheckboxContentFrontend : IStickContentFrontend
     {
         public string Text { get; set; } = string.Empty;
         public bool IsChecked { get; set; }
-        public CheckboxContent(string text) => Text = text;
+        public CheckboxContentFrontend(string text) => Text = text;
+
+        public CheckboxContentFrontend(CheckboxContent content)
+        {
+            Text = content.text;
+            IsChecked = content.isChecked;
+        }
+
+        public CheckboxContent ToSticksyCheckBoxContent()
+        {
+            return new CheckboxContent(Text) {isChecked = IsChecked};
+        }
     }
 
     [Serializable]
-    public class TextContent : IStickContent
+    public class TextContentFrontend : IStickContentFrontend
     {
         public string Text { get; set; } = string.Empty;
-        public TextContent(string text) => Text = text;
+        public TextContentFrontend(string text) => Text = text;
+        
+        public TextContentFrontend(TextContent content) => Text = content.text;
+
+        public TextContent ToSticksyTextContent()
+        {
+            return new TextContent(Text);
+        }
     }
 }

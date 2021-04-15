@@ -35,8 +35,8 @@ namespace Lastiq.ViewModels
                     view.Stick.Contents.Any(c =>
                     {
                         string text;
-                        if (c is TextContent tc) text = tc.Text;
-                        else if (c is CheckboxContent cbc) text = cbc.Text;
+                        if (c is TextContent tc) text = tc.text;
+                        else if (c is CheckboxContent cbc) text = cbc.text;
                         else return false;
                         
                         return text.ToLower().Contains(SearchText.ToLower());
@@ -83,10 +83,18 @@ namespace Lastiq.ViewModels
         //---------------------------------------------------------------------
         #region CreateStick
 
-        //private void CreateStick(object e)
-        //{
-        //    Client.Sender.CreateSticker();
-        //}
+        private void CreateStick(object e)
+        {
+            if (OfflineMode)
+            {
+                var stick = new StickViewModel();
+                    stick.Stick.Title = "Title";
+                    stick.Stick.Contents.Add(new TextContentFrontend("Sample text"));
+                StickCollection.Add(stick);
+            }
+            else
+                Client.Sender.CreateSticker();
+        }
 
         private void ProcessCreateStickResult(AnswerId answer)
         {
@@ -97,7 +105,6 @@ namespace Lastiq.ViewModels
 
         #endregion CreateStick
         //---------------------------------------------------------------------
-
         #region SingIn
 
         private void SingIn(object e)
@@ -107,7 +114,6 @@ namespace Lastiq.ViewModels
             if (!regexItem.IsMatch(UserName))
             {
                 //Show "Restricted symbols in username"
-                //Temp
                 MessageBox.Show("Restricted symbols in username");
                 return;
             }
@@ -115,12 +121,13 @@ namespace Lastiq.ViewModels
             if (PasswordText.Length < 8)
             {
                 //Show "Password min length is 8"
-                //Temp
                 MessageBox.Show("Password min length is 8");
                 return;
             }
-            //TO DO: Call SingIn in model
-            Client.Sender.SignIn(UserName, PasswordText);
+            
+            //Sing in
+            if(!OfflineMode)
+                Client.Sender.SignIn(UserName, PasswordText);
         }
 
         private void ProcessSingInResult(AnswerUser answer)
@@ -141,7 +148,8 @@ namespace Lastiq.ViewModels
 
         public void RemoveSticker(StickViewModel sticker)
         {
-            Client.Sender.DeleteSticker(Client.User.sticks.IndexOf(sticker.ToStick()));
+            if(!OfflineMode)
+                Client.Sender.DeleteSticker(Client.User.sticks.IndexOf(sticker.ToStick()));
             StickCollection.Remove(sticker);
         }
 
@@ -151,11 +159,25 @@ namespace Lastiq.ViewModels
 
         public void StickerEdited(StickViewModel sticker)
         {
-            Client.Sender.SaveSticker(sticker.ToStick(), Client.User.sticks.IndexOf(Client.User.sticks.Find((stick => stick.id == sticker.Stick.Id))));
+            if(!OfflineMode)
+                Client.Sender.SaveSticker(sticker.ToStick(), GetIndexOfSticker(sticker));
         }
 
         #endregion StickerEdited
         //---------------------------------------------------------------------
+        #region TagsChanged
 
+        public void TagsChanged(StickViewModel sticker)
+        {
+            if(!OfflineMode)
+                Client.Sender.EditTags(GetIndexOfSticker(sticker), sticker.Stick.Tags);
+        }
+        
+        #endregion
+        //---------------------------------------------------------------------
+        public int GetIndexOfSticker(StickViewModel sticker)
+        {
+            return Client.User.sticks.IndexOf(Client.User.sticks.Find((stick => stick.id == sticker.Stick.Id)));
+        }
     }
 }
