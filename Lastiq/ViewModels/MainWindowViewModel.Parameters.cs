@@ -2,12 +2,16 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Net.Sockets;
 using System.Windows.Data;
+using SticksyClient;
+using SticksyProtocol;
 
 namespace Lastiq.ViewModels
 {
     partial class MainWindowViewModel
     {
+        public bool OfflineMode = true;
         //---------------------------------------------------------------------
         #region bool : ShowLoginPanel
 
@@ -138,6 +142,10 @@ namespace Lastiq.ViewModels
         }
 
         #endregion TagModel : TagSelected
+        //---------------------------------------------------------------------
+        public TcpClient TcpClient;
+        
+        public Client Client;
         //---------------------------------------------------------------------
     }
 }

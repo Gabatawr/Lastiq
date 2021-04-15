@@ -417,13 +417,13 @@
 
                                             <ItemsControl.Resources>
                                                 
-                                                <DataTemplate DataType="{x:Type m:TextContent}">
+                                                <DataTemplate DataType="{x:Type m:TextContentFrontend}">
                                                     <TextBox Style="{StaticResource TextBoxStyle}" 
                                                              Text="{Binding Text}" Margin="19,2,0,2"
                                                              IsReadOnly="{Binding ElementName=StickTitle, Path=DataContext.ReadOnly}"/>
                                                 </DataTemplate>
                                                 
-                                                <DataTemplate DataType="{x:Type m:CheckboxContent}">
+                                                <DataTemplate DataType="{x:Type m:CheckboxContentFrontend}">
                                                     <CheckBox IsChecked="{Binding IsChecked}"
                                                               Margin="19,2,0,2">
                                                         <TextBox Style="{StaticResource TextBoxStyle}"
@@ -452,7 +452,7 @@
                                                                                         <ie:Interaction.Triggers>
                                                                                             <ie:EventTrigger EventName="MouseDown">
                                                                                                 <ie:InvokeCommandAction Command="{Binding CheckboxClickCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=vm:StickViewModel}}"
-                                                                                                                    CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType=m:CheckboxContent}}"/>
+                                                                                                                    CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType=m:CheckboxContentFrontend}}"/>
                                                                                             </ie:EventTrigger>
                                                                                         
                                                                                         </ie:Interaction.Triggers>

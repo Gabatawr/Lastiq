@@ -2,6 +2,10 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Media;
+using SticksyClient;
+using SticksyProtocol;
+
 
 namespace Lastiq.ViewModels
 {
@@ -31,8 +35,8 @@ namespace Lastiq.ViewModels
                     view.Stick.Contents.Any(c =>
                     {
                         string text;
-                        if (c is TextContent tc) text = tc.Text;
-                        else if (c is CheckboxContent cbc) text = cbc.Text;
+                        if (c is TextContent tc) text = tc.text;
+                        else if (c is CheckboxContent cbc) text = cbc.text;
                         else return false;
                         
                         return text.ToLower().Contains(SearchText.ToLower());
@@ -77,6 +81,30 @@ namespace Lastiq.ViewModels
 
         #endregion TagEvents
         //---------------------------------------------------------------------
+        #region CreateStick
+
+        private void CreateStick(object e)
+        {
+            if (OfflineMode)
+            {
+                var stick = new StickViewModel();
+                    stick.Stick.Title = "Title";
+                    stick.Stick.Contents.Add(new TextContentFrontend("Sample text"));
+                StickCollection.Add(stick);
+            }
+            else
+                Client.Sender.CreateSticker();
+        }
+
+        private void ProcessCreateStickResult(AnswerId answer)
+        {
+            var stick = new StickViewModel();
+            stick.FromStick(Client.Listener.СreatingStickerForHander(answer));
+            StickCollection.Add(stick);
+        }
+
+        #endregion CreateStick
+        //---------------------------------------------------------------------
         #region SingIn
 
         private void SingIn(object e)
@@ -86,7 +114,6 @@ namespace Lastiq.ViewModels
             if (!regexItem.IsMatch(UserName))
             {
                 //Show "Restricted symbols in username"
-                //Temp
                 MessageBox.Show("Restricted symbols in username");
                 return;
             }
@@ -94,25 +121,123 @@ namespace Lastiq.ViewModels
             if (PasswordText.Length < 8)
             {
                 //Show "Password min length is 8"
-                //Temp
                 MessageBox.Show("Password min length is 8");
                 return;
             }
-            //TO DO: Call SingIn in model
-            bool successfully = true; // bool successfully = SignIn(UserName, PasswordText);
+            
+            //Sing in
+            if(!OfflineMode)
+                Client.Sender.SignIn(UserName, PasswordText);
+        }
 
-            if (successfully)
+        private void ProcessSingInResult(AnswerUser answer)
+        {
+            if (Client.Listener.SignInForHandler(answer))
             {
-                //Do smth
+                MessageBox.Show("Login successful");
             }
             else
             {
-                //Show "Failed to login"
+                MessageBox.Show("Failed to login");
             }
         }
 
         #endregion SingIn
         //---------------------------------------------------------------------
+        //TO DO:
+        #region SingUp
 
+        private void SingUp(object e)
+        {
+            var regexItem = new Regex("^[a-zA-Z0-9_.]*$");
+            
+            //TO DO:
+
+            //// if (!regexItem.IsMatch( *Login* ))
+            //{
+            //    //Show "Restricted symbols in username"
+            //    MessageBox.Show("Restricted symbols in username");
+            //    return;
+            //}
+
+            ////if (*Password* .Length < 8)
+            //{
+            //    //Show "Password min length is 8"
+            //    MessageBox.Show("Password min length is 8");
+            //    return;
+            //}
+
+            ////Sing in
+            //if (!OfflineMode)
+            //    Client.Sender.SignUp(UserName, PasswordText);
+        }
+
+        private void ProcessSingUpResult(AnswerId id)
+        {
+            //TO DO:
+            ////if (Client.Listener.SignUpForHandler(id, *Login* , *Password* ))
+            //{
+            //    MessageBox.Show("SingUp successful");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Failed to SingUp");
+            //}
+        }
+
+        #endregion SingIn
+        //---------------------------------------------------------------------
+        #region RemoveSticker
+
+        public void RemoveSticker(StickViewModel sticker)
+        {
+            if(!OfflineMode)
+                Client.Sender.DeleteSticker(Client.User.sticks.IndexOf(sticker.ToStick()));
+            StickCollection.Remove(sticker);
+        }
+
+        #endregion RemoveSticker
+        //---------------------------------------------------------------------
+        #region StickerEdited
+
+        public void StickerEdited(StickViewModel sticker)
+        {
+            if(!OfflineMode)
+                Client.Sender.SaveSticker(sticker.ToStick(), GetIndexOfSticker(sticker));
+        }
+
+        #endregion StickerEdited
+        //---------------------------------------------------------------------
+        #region TagsChanged
+        
+        public void TagsChanged(StickViewModel sticker)
+        {
+            if(!OfflineMode)
+                Client.Sender.EditTags(GetIndexOfSticker(sticker), sticker.Stick.Tags);
+        }
+
+        #endregion
+        //---------------------------------------------------------------------
+        //TO DO:
+        #region ReceiveUsers
+
+        //Send request for users list to server
+        public void RequestUsers()
+        {
+            Client.Sender.GetUsers();
+        }
+
+        //Receiving users list from server
+        public void ReceiveUsers(AnswerListUser userList)
+        {
+            //TO DO:
+        }
+
+        #endregion
+        //---------------------------------------------------------------------
+        public int GetIndexOfSticker(StickViewModel sticker)
+        {
+            return Client.User.sticks.IndexOf(Client.User.sticks.Find((stick => stick.id == sticker.Stick.Id)));
+        }
     }
 }
