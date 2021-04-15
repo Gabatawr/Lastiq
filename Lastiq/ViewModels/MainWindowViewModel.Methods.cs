@@ -144,6 +144,7 @@ namespace Lastiq.ViewModels
 
         #endregion SingIn
         //---------------------------------------------------------------------
+        //TO DO:
         #region SingUp
 
         private void SingUp(object e)
@@ -208,7 +209,7 @@ namespace Lastiq.ViewModels
         #endregion StickerEdited
         //---------------------------------------------------------------------
         #region TagsChanged
-
+        
         public void TagsChanged(StickViewModel sticker)
         {
             if(!OfflineMode)
@@ -217,13 +218,16 @@ namespace Lastiq.ViewModels
 
         #endregion
         //---------------------------------------------------------------------
+        //TO DO:
         #region ReceiveUsers
 
+        //Send request for users list to server
         public void RequestUsers()
         {
             Client.Sender.GetUsers();
         }
 
+        //Receiving users list from server
         public void ReceiveUsers(AnswerListUser userList)
         {
             //TO DO:
