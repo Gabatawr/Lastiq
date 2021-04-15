@@ -144,6 +144,48 @@ namespace Lastiq.ViewModels
 
         #endregion SingIn
         //---------------------------------------------------------------------
+        #region SingUp
+
+        private void SingUp(object e)
+        {
+            var regexItem = new Regex("^[a-zA-Z0-9_.]*$");
+            
+            //TO DO:
+
+            //// if (!regexItem.IsMatch( *Login* ))
+            //{
+            //    //Show "Restricted symbols in username"
+            //    MessageBox.Show("Restricted symbols in username");
+            //    return;
+            //}
+
+            ////if (*Password* .Length < 8)
+            //{
+            //    //Show "Password min length is 8"
+            //    MessageBox.Show("Password min length is 8");
+            //    return;
+            //}
+
+            ////Sing in
+            //if (!OfflineMode)
+            //    Client.Sender.SignUp(UserName, PasswordText);
+        }
+
+        private void ProcessSingUpResult(AnswerId id)
+        {
+            //TO DO:
+            ////if (Client.Listener.SignUpForHandler(id, *Login* , *Password* ))
+            //{
+            //    MessageBox.Show("SingUp successful");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Failed to SingUp");
+            //}
+        }
+
+        #endregion SingIn
+        //---------------------------------------------------------------------
         #region RemoveSticker
 
         public void RemoveSticker(StickViewModel sticker)
@@ -172,7 +214,21 @@ namespace Lastiq.ViewModels
             if(!OfflineMode)
                 Client.Sender.EditTags(GetIndexOfSticker(sticker), sticker.Stick.Tags);
         }
-        
+
+        #endregion
+        //---------------------------------------------------------------------
+        #region ReceiveUsers
+
+        public void RequestUsers()
+        {
+            Client.Sender.GetUsers();
+        }
+
+        public void ReceiveUsers(AnswerListUser userList)
+        {
+            //TO DO:
+        }
+
         #endregion
         //---------------------------------------------------------------------
         public int GetIndexOfSticker(StickViewModel sticker)

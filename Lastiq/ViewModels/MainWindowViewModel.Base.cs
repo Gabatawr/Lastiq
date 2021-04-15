@@ -23,6 +23,8 @@ namespace Lastiq.ViewModels
                 Client = new Client(TcpClient);
                 Client.Listener.SigningIn += ProcessSingInResult;
                 Client.Listener.CreatingSticker += ProcessCreateStickResult;
+                Client.Listener.SigningUp += ProcessSingUpResult;
+                Client.Listener.ReceivingListUsers += ReceiveUsers;
             }
 
             #region StickListTest
