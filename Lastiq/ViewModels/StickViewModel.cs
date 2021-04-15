@@ -141,6 +141,8 @@ namespace Lastiq.ViewModels
             string newTag = "NewTag";
             Stick.Tags.Add(newTag);
             MainViewModel.TagsChanged(this);
+
+            Stick.Tags.Add(newTag);
         }
 
         #endregion Command : AddTagCommand

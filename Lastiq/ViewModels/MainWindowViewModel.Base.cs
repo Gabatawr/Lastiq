@@ -52,6 +52,7 @@ namespace Lastiq.ViewModels
             //    StickCollection.Add(new StickViewModel() { Stick = Stick });
             //}
 
+
             #endregion StickListTest
         }
     }
